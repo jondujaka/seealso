@@ -5,7 +5,7 @@ class Index extends React.Component {
 	render() {
 		return (
 			<Layout>
-				<h1>Home</h1>
+				<h1>Website in progress...</h1>
 			</Layout>
 			);
 	}
