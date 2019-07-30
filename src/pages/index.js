@@ -13,9 +13,8 @@ class Index extends React.Component {
 		}
 		const siteTitle = data.site.siteMetadata.title;
 		return (
-			<Layout location="Home" title={siteTitle}>
+
 				<h1>Website in progress...</h1>
-			</Layout>
 			);
 	}
 }
