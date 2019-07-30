@@ -14,7 +14,7 @@ class Index extends React.Component {
 		const siteTitle = data.site.siteMetadata.title;
 		return (
 
-				<h1>👻</h1>
+				<h1 class="👻">👻</h1>
 			);
 	}
 }
