@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import("../styles/index.scss");
 
 class Layout extends React.Component {
 	render() {
@@ -9,12 +10,14 @@ class Layout extends React.Component {
 		console.log(children);
 
 		header = (
-			<h3>
-				<Link to={`/archive`}>Archive</Link>
-			</h3>
-			<h3>
-				<Link to={`/info`}>Info</Link>
-			</h3>
+			<nav>	
+				<h3>
+					<Link to={`/archive`}>Archive</Link>
+				</h3>
+				<h3>
+					<Link to={`/info`}>Info</Link>
+				</h3>
+			</nav>
 		);
 
 		return (
@@ -22,9 +25,7 @@ class Layout extends React.Component {
 				<header>{header}</header>
 				<main>{children}</main>
 				<footer>
-					© {new Date().getFullYear()}, Built with
-					{` `}
-					<a href="https://www.gatsbyjs.org">Gatsby</a>
+					<a href="#">See Also</a>
 				</footer>
 			</div>
 		);

@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'OS Sans Affair';
+    src: url('../../static/fonts/OSSansAffair.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OS Sans Affair';
+    src: url('../../static/fonts/OSSansAffair.woff2') format('woff2'),
+        url('../../static/fonts/OSSansAffair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: "OS Sans Affair";
+}
