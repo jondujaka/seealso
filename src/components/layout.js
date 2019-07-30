@@ -6,20 +6,17 @@ class Layout extends React.Component {
 		const { location, title, children } = this.props;
 		const rootPath = `${__PATH_PREFIX__}/`;
 		let header;
+		console.log(children);
 
-		if (location && location.pathname === rootPath) {
-			header = (
-				<h1>
-					<Link to={`/`}>{title}</Link>
-				</h1>
-			);
-		} else {
-			header = (
-				<h3>
-					<Link to={`/`}>{title}</Link>
-				</h3>
-			);
-		}
+		header = (
+			<h3>
+				<Link to={`/archive`}>Archive</Link>
+			</h3>
+			<h3>
+				<Link to={`/info`}>Info</Link>
+			</h3>
+		);
+
 		return (
 			<div>
 				<header>{header}</header>
