@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import("../styles/index.scss");
+// import("../styles/index.scss");
+import styled from "styled-components";
+
+
+const Nav = styled.div`
+  background: red;
+`
 
 class Layout extends React.Component {
 	render() {
@@ -10,14 +16,14 @@ class Layout extends React.Component {
 		console.log(children);
 
 		header = (
-			<nav>	
+			<Nav>	
 				<h3>
 					<Link to={`/archive`}>Archive</Link>
 				</h3>
 				<h3>
 					<Link to={`/info`}>Info</Link>
 				</h3>
-			</nav>
+			</Nav>
 		);
 
 		return (
