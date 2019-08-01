@@ -22,6 +22,7 @@ collections:
     - name: 'team-members'
       label: 'Team Members'
       folder: 'content/team-members'
+      identifier_field: 'first-name'
       create: true
       fields:
         - { label: 'First Name', name: 'first-name', widget: 'string'}  
