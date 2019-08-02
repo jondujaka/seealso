@@ -2,20 +2,22 @@ import React from 'react';
 import Layout from '../components/layout';
 import styled from "styled-components";
 
-let randV = Math.random() * (90 - 10) + 10;
-let randH = Math.random() * (90 - 10) + 10;
-
-const Ghost = styled.h1`
-	text-align: right;
-  display: block;
-  margin-right: ${randH}vw;
-  margin-top: ${randV}vh;
-`
-
 
 class Index extends React.Component {
 	render() {
-		let random = Math.random();
+
+		let randV = Math.floor(Math.random() * (90 - 10) + 10);
+		let randH = Math.floor(Math.random() * (90 - 10) + 10);
+		let randF = Math.random() * (7 - 1) + 1;
+
+		const Ghost = styled.h1`
+			text-align: right;
+		  display: block;
+		  margin-right: ${randH}vw;
+		  margin-top: ${randV}vh;
+		  font-size: ${randF}rem;
+		`
+
 		const data = {
 			site : {
 				siteMetadata : {
@@ -25,10 +27,7 @@ class Index extends React.Component {
 		}
 		const siteTitle = data.site.siteMetadata.title;
 		return (
-			<div>
-				<Ghost>👻</Ghost>
-				<span>{random}</span>
-			</div>
+			<Ghost>👻</Ghost>	
 		);
 	}
 }
