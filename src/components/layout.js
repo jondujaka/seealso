@@ -3,6 +3,10 @@ import { Link } from 'gatsby';
 // import("../styles/index.scss");
 import styled from "styled-components";
 
+const MainWrapper = styled.div`
+	font-family: 'OS Sans Affair';
+	fonts-size: 1.5rem;
+`
 
 const Nav = styled.div`
   background: red;
