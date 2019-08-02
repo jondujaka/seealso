@@ -14,8 +14,8 @@ const Ghost = styled.h1`
 
 
 class Index extends React.Component {
-
 	render() {
+		let random = Math.random();
 		const data = {
 			site : {
 				siteMetadata : {
@@ -25,9 +25,11 @@ class Index extends React.Component {
 		}
 		const siteTitle = data.site.siteMetadata.title;
 		return (
-
+			<div>
 				<Ghost>👻</Ghost>
-			);
+				<span>{random}</span>
+			</div>
+		);
 	}
 }
 
