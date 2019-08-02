@@ -13,9 +13,6 @@ class Index extends React.Component {
 		const Ghost = styled.h1`
 			text-align: right;
 		  display: block;
-		  margin-right: ${randH}vw;
-		  margin-top: ${randV}vh;
-		  font-size: ${randF}rem;
 		`
 
 		const data = {
@@ -27,7 +24,15 @@ class Index extends React.Component {
 		}
 		const siteTitle = data.site.siteMetadata.title;
 		return (
-			<Ghost>👻</Ghost>	
+			<Ghost 
+				style={{
+					marginRight: `${randH}vw`,
+		  		marginTop: `${randV}vh`,
+		  		fontSize: `${randF}rem`
+		  	}}
+		  >
+		  	👻
+		  </Ghost>	
 		);
 	}
 }
