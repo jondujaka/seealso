@@ -9,6 +9,7 @@ class ProjectTemplate extends React.Component {
         const project = this.props.data.markdownRemark;
         const siteTitle = this.props.data.site.siteMetadata.title;
         const { previous, next } = this.props.pageContext;
+        console.log(this.props);
 
         return (
             <Layout location={this.props.location} title={siteTitle}>
