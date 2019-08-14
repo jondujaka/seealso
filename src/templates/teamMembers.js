@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 
 class MemberRoute extends React.Component {
   render() {
