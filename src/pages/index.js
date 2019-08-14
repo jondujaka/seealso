@@ -8,8 +8,10 @@ class Index extends React.Component {
 
 	state = {
 		position : {
-			horizontal: Math.floor(Math.random() * (70 - 10) + 10),
-			vertical: Math.floor(Math.random() * (70 - 10) + 10)
+			horizontal: 0,
+			vertical: 0,
+			size: 0,
+			opacity: 0
 		}
 	}
 
@@ -17,8 +19,10 @@ class Index extends React.Component {
 		this.setState(
 			{
 				position: {
-					horizontal: 40,
-					vertical: Math.floor(Math.random() * (40 - 10) + 10)
+					horizontal: Math.floor(Math.random() * (70 - 10) + 10),
+					vertical: Math.floor(Math.random() * (40 - 10) + 10),
+					size: Math.random() * (7 - 1) + 1,
+					opacity: 1
 				}
 			}
 		);
@@ -33,6 +37,8 @@ class Index extends React.Component {
 		  display: block;
 		  margin-right: ${position.horizontal}vw;
 		  margin-top: ${position.vertical}vh;
+		  transition: .2s opacity .2s ease-in-out;
+		  font-size: ${position.size}rem;
 		`
 
 		const data = {
