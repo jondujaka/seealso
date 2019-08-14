@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
@@ -16,9 +17,10 @@ exports.createPages = async ({ graphql, actions }) => {
 						node {
 							fields {
 								slug
-							}
+							} 	
 							frontmatter {
-								title
+								title,
+								team
 							}
 						}
 					}
@@ -34,6 +36,31 @@ exports.createPages = async ({ graphql, actions }) => {
 	// Create blog posts pages.
 	const posts = result.data.allMarkdownRemark.edges;
 
+	// Extract members:
+  let teamMembers = []
+  // Iterate through each post, putting all found team memebers into `teamMembers`
+  console.log(posts[0].node.frontmatter.team[0]);
+  posts.forEach(edge => {
+    if (_.get(edge, `node.frontmatter.team`)) {
+      teamMembers = [...edge.node.frontmatter.team];
+    }
+  })
+
+  // Eliminate duplicate tags
+  teamMembers = _.uniq(teamMembers);
+
+  const archive = path.resolve(`./src/templates/archive.js`);
+
+  createPage({
+	 	component: archive,
+	  path: `/archive`,
+	  context: {
+	  	test: 'test',
+			teamMembers
+		},
+})
+
+
 	posts.forEach((post, index) => {
 		const previous =
 			index === posts.length - 1 ? null : posts[index + 1].node;
@@ -46,9 +73,23 @@ exports.createPages = async ({ graphql, actions }) => {
 				slug: post.node.fields.slug,
 				previous,
 				next,
+				teamMembers
 			},
 		});
 	});
+
+  // Make member pages
+  teamMembers.forEach(member => {
+    const memberPath = `/${_.kebabCase(member)}/`
+
+    createPage({
+      path: memberPath,
+      component: path.resolve(`src/templates/teamMembers.js`),
+      context: {
+        member
+      },
+    })
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
