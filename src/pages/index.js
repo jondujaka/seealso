@@ -37,8 +37,9 @@ class Index extends React.Component {
 		  display: block;
 		  margin-right: ${position.horizontal}vw;
 		  margin-top: ${position.vertical}vh;
-		  transition: .2s opacity .2s ease-in-out;
+		  transition: .2s opacity .4s ease-in-out;
 		  font-size: ${position.size}rem;
+		  opacity: ${position.opacity}
 		`
 
 		const data = {
