@@ -14,7 +14,14 @@ class Index extends React.Component {
 	}
 
 	componentDidMount() {
-		// this.setState({ test: 'bbb' })
+		this.setState(
+			{
+				position: {
+					horizontal: 40,
+					vertical: Math.floor(Math.random() * (40 - 10) + 10)
+				}
+			}
+		);
 	}
 
 	render() {
