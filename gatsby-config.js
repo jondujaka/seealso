@@ -1,12 +1,12 @@
 module.exports = {
 	siteMetadata: {
-		title: `Gatsby Starter Blog`,
-		author: `Kyle Mathews`,
-		description: `A starter blog demonstrating what Gatsby can do.`,
-		siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
-		social: {
-			twitter: `kylemathews`,
-		},
+		title: `SEEALSO Studio`,
+		author: `Jon Dujaka`,
+		description: `Portfolio`,
+		siteUrl: `https://seealso.info/`,
+		// social: {
+		// 	twitter: `kylemathews`,
+		// },
 	},
 	plugins: [
 		`gatsby-plugin-netlify-cms`,
@@ -23,6 +23,13 @@ module.exports = {
 				path: `${__dirname}/content/assets`,
 				name: `assets`,
 			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/content/team-members`,
+				name: 'team-members'
+			}
 		},
 		{
 	    resolve: `gatsby-plugin-favicon`,
@@ -68,9 +75,9 @@ module.exports = {
 				short_name: `SeeAlso`,
 				start_url: `/`,
 				background_color: `#ffffff`,
-				theme_color: `#663399`,
+				theme_color: `#000`,
 				display: `minimal-ui`,
-				icon: `content/assets/gatsby-icon.png`,
+				icon: `content/assets/favicon.png`,
 			},
 		},
 		`gatsby-plugin-offline`,

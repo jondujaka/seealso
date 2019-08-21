@@ -18,14 +18,14 @@ collections:
           - { label: 'Publish Date', name: 'date', widget: 'datetime' }
           - { label: 'Description', name: 'description', widget: 'string' }
           - { label: 'Body', name: 'body', widget: 'markdown' }
-          - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['first-name', 'last-name'], valueField: 'first-name'}}
+          - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['first-name', 'last-name'], valueField: ['first-name', 'last-name']}}
 
     - name: 'team-members'
       label: 'Team Members'
       folder: 'content/team-members'
-      identifier_field: 'first-name'
+      identifier_field: 'firstName'
       create: true
       fields:
-        - { label: 'First Name', name: 'first-name', widget: 'string'}  
-        - { label: 'Last Name', name: 'last-name', widget: 'string'}  
+        - { label: 'First Name', name: 'firstName', widget: 'string'}  
+        - { label: 'Last Name', name: 'lastName', widget: 'string'}  
         - { label: 'Link', name: 'link', widget: 'string'}

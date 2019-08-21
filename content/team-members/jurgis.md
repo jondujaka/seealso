@@ -1,7 +1,7 @@
 ---
 title: jurgis
-first-name: Jurgis
-last-name: Lietunovas
+firstName: Jurgis
+lastName: Lietunovas
 link: 'https://www.facebook.com/jurgis.lietunovas'
 ---
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout';
-import styled from "styled-components";
+import styled from 'styled-components';
+import SEO from '../components/seo';
 
 export default props => {
 
@@ -39,6 +40,10 @@ export default props => {
 	const siteTitle = data.site.siteMetadata.title;
 
 	return (
-		<Ghost>👻</Ghost>
+		<Layout location={props.location} title={siteTitle}>
+      <SEO title="👻" />
+			<Ghost>👻</Ghost>
+		</Layout>	
+		
 	);
 }
