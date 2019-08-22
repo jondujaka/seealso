@@ -32,7 +32,7 @@ export default props => {
 	const data = {
 		site : {
 			siteMetadata : {
-				title: "👻"
+				title: "👻 - See Also"
 			}
 		}
 	}
@@ -40,10 +40,9 @@ export default props => {
 	const siteTitle = data.site.siteMetadata.title;
 
 	return (
-		<Layout location={props.location} title={siteTitle}>
+		<>
       <SEO title="👻" />
 			<Ghost>👻</Ghost>
-		</Layout>	
-		
+		</>
 	);
 }
