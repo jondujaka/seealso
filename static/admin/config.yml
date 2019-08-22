@@ -30,9 +30,11 @@ collections:
     - name: 'home-images'
       label: 'Home Images'
       folder: 'content/home-images'
-      identifier_field: mainImage
       create: true
       fields:
+      - label: 'Title'
+        name: 'title'
+        widget: 'string'
       - label: 'Cover Image'
         name: 'cover-image'
         widget: 'list'
