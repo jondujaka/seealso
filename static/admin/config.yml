@@ -30,7 +30,7 @@ collections:
     - name: 'home-images'
       label: 'Home Images'
       folder: 'content/home-images'
-      identifier_field: name
+      identifier_field: mainImage
       create: true
       fields:
       - label: 'Cover Image'
