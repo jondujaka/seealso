@@ -1,18 +1,50 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-class ProjectTemplate extends React.Component {
-    render() {
-        const project = this.props.data.markdownRemark;
-        const siteTitle = this.props.data.site.siteMetadata.title;
-        const { previous, next } = this.props.pageContext;
-        console.log(this.props);
+export default props => {
+    const project = props.data.postContent;
+    const siteTitle = props.data.site.siteMetadata.title;
+    const {previous, next} = props.pageContext;
+    const allTeam = props.data.teamMembers.edges;
+    const team = project.frontmatter.team || [];
+
+    console.log(allTeam);
+
+    const pagination = () => {
+
+        const prevButton = (
+            <li>
+                <Link to={previous && previous.fields.slug} rel="prev">
+                    ← {previous && previous.frontmatter.title}
+                </Link>
+            </li>
+        );
+
+        const nextButton = (
+            <li>
+                <Link to={next && next.fields.slug} rel="next">
+                    {next && next.frontmatter.title} →
+                </Link>
+            </li>
+        );
 
         return (
-            <Layout location={this.props.location} title={siteTitle}>
+            <ul>
+                {previous && prevButton}
+                {next && nextButton}
+            </ul>
+        );
+    }
+    
+    const renderMember = (member, i) => {
+        return <span key={i}>{member}</span>;
+    }
+
+     return (
+            <Layout location={props.location} title={siteTitle}>
                 <SEO
                     title={project.frontmatter.title}
                     description={
@@ -21,32 +53,17 @@ class ProjectTemplate extends React.Component {
                 />
                 <h1>{project.frontmatter.title}</h1>
                 <p>{project.frontmatter.date}</p>
+                {team.map((member, index) => renderMember(member, index))}
+
                 <div dangerouslySetInnerHTML={{ __html: project.html }} />
                 <hr />
-                <ul>
-                    <li>
-                        {previous && (
-                            <Link to={previous.fields.slug} rel="prev">
-                                ← {previous.frontmatter.title}
-                            </Link>
-                        )}
-                    </li>
-                    <li>
-                        {next && (
-                            <Link to={next.fields.slug} rel="next">
-                                {next.frontmatter.title} →
-                            </Link>
-                        )}
-                    </li>
-                </ul>
+                {pagination()}
             </Layout>
         );
-    }
 }
 
-export default ProjectTemplate;
 
-export const pageQuery = graphql`
+export const data = graphql`
     query ProjectBySlug($slug: String!) {
         site {
             siteMetadata {
@@ -54,7 +71,7 @@ export const pageQuery = graphql`
                 author
             }
         }
-        markdownRemark(fields: { slug: { eq: $slug } }) {
+        postContent: markdownRemark(fields: { slug: { eq: $slug } }) {
             id
             excerpt(pruneLength: 160)
             html
@@ -62,7 +79,23 @@ export const pageQuery = graphql`
                 title
                 date(formatString: "MMMM DD, YYYY")
                 description
+                team
+            }
+        }
+        teamMembers: allMarkdownRemark(filter: {frontmatter: {fullName: {ne: null}}}) {
+            edges {
+                node {
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        fullName
+                        link
+                    }
+                }
             }
         }
     }
 `;
+
+

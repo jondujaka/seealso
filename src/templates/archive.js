@@ -48,8 +48,7 @@ export default props => {
 								slug
 							}
 							frontmatter {
-								firstName
-								lastName
+								fullName
 								link
 							}
 						}
@@ -66,9 +65,9 @@ export default props => {
 	let parsedMembers = [];
 
 	team.map(member =>{
-		const front = member.node.childMarkdownRemark.frontmatter;
+		const fullName = member.node.childMarkdownRemark.frontmatter.fullName;
 		parsedMembers.push({
-			fullName: `${front.firstName} ${front.lastName}`,
+			fullName,
 			slug: member.node.childMarkdownRemark.fields.slug
 		});
 	});

@@ -3,15 +3,15 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions }) => {
-    
     const { createPage } = actions;
     const project = path.resolve(`./src/templates/project.js`);
-    const result = await graphql(
+    const postsData = await graphql(
         `
             {
                 allMarkdownRemark(
                     sort: { fields: [frontmatter___date], order: DESC }
                     limit: 1000
+                    filter: { frontmatter: { date: { ne: null } } }
                 ) {
                     edges {
                         node {
@@ -21,6 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
                             frontmatter {
                                 title
                                 team
+                                date
                             }
                         }
                     }
@@ -29,12 +30,36 @@ exports.createPages = async ({ graphql, actions }) => {
         `
     );
 
-    if (result.errors) {
-        throw result.errors;
+    if (postsData.errors) {
+        throw postsData.errors;
     }
 
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges;
+    const teamMembersData = await graphql(
+        `
+            {
+                allMarkdownRemark(filter: {frontmatter: {fullName: {ne: null}}}) {
+                    edges {
+                        node {
+                            fields {
+                                slug
+                            }
+                            frontmatter {
+                                fullName
+                                link
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    );
+
+    if (teamMembersData.errors) {
+        throw teamMembersData.errors;
+    }
+
+    const posts = postsData.data.allMarkdownRemark.edges;
+    const teamMembers = teamMembersData.data.allMarkdownRemark.edges;
 
     const archive = path.resolve(`./src/templates/archive.js`);
 
@@ -43,6 +68,7 @@ exports.createPages = async ({ graphql, actions }) => {
         path: `/archive`
     });
 
+    // Create pages for each post
     posts.forEach((post, index) => {
         const previous =
             index === posts.length - 1 ? null : posts[index + 1].node;
@@ -53,11 +79,24 @@ exports.createPages = async ({ graphql, actions }) => {
             component: project,
             context: {
                 slug: post.node.fields.slug,
-                previous,
-                next
+                next,
+                previous
             }
         });
     });
+
+    // Create pages for each member
+    teamMembers.forEach((member, index) => {
+        createPage({
+            path: member.node.fields.slug,
+            component: project,
+            context: {
+                slug: member.node.fields.slug
+            }
+        });
+    });
+
+
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
