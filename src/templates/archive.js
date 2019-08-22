@@ -4,18 +4,24 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import Filter from '../components/filter';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import Posts from '../components/posts';
 
 export default props => {
-
 	// Get all projects
 	const data = useStaticQuery(graphql`
 		query {
+
 			site {
 				siteMetadata {
 					title
 				}
 			}
-			allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+			
+			# Get only the posts (only posts have date field, and sort by date)
+			allMarkdownRemark(
+				sort: { fields: [frontmatter___date], order: DESC },
+				filter: {frontmatter: {date: {ne: null}}}
+			) {
 				edges {
 					node {
 						excerpt
@@ -26,7 +32,25 @@ export default props => {
 							date(formatString: "MMMM DD, YYYY")
 							title
 							description
-							team
+						}
+					}
+				}
+			}
+
+			# Get only the team-members
+			allFile(filter: { sourceInstanceName: { eq: "team-members" } }) {
+				edges {
+					node {
+						id
+						name
+						childMarkdownRemark {
+							fields {
+								slug
+							}
+							frontmatter {
+								fullName
+								link
+							}
 						}
 					}
 				}
@@ -36,28 +60,23 @@ export default props => {
 
 	const siteTitle = data.site.siteMetadata.title;
 	const posts = data.allMarkdownRemark.edges;
-	const teamMembers = props.pageContext.teamMembers
+	const team = data.allFile.edges;
 
+	let parsedMembers = [];
 
-	const listPosts = posts.map((post, index) => {
-		const title = post.node.frontmatter.title;
-		const link = post.node.fields.slug;
-
-		return (
-			<li key={index}>
-				<a href={link}> {title}</a>
-			</li>
-		);
-
+	team.map(member =>{
+		const fullName = member.node.childMarkdownRemark.frontmatter.fullName;
+		parsedMembers.push({
+			fullName,
+			slug: member.node.childMarkdownRemark.fields.slug
+		});
 	});
 
 	return (
 		<Layout location={props.location} title={siteTitle}>
-      <SEO title="Archive" />
-			<Filter items={teamMembers}/>
-			<ul>
-				{listPosts}
-			</ul>
-		</Layout>	
+			<SEO title="Archive" />
+			<Filter items={parsedMembers} />	
+			<Posts posts={posts} />
+		</Layout>
 	);
-}
+};

@@ -3,104 +3,110 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions }) => {
-	const { createPage } = actions;
+    const { createPage } = actions;
+    const project = path.resolve(`./src/templates/project.js`);
+    const postsData = await graphql(
+        `
+            {
+                allMarkdownRemark(
+                    sort: { fields: [frontmatter___date], order: DESC }
+                    limit: 1000
+                    filter: { frontmatter: { date: { ne: null } } }
+                ) {
+                    edges {
+                        node {
+                            fields {
+                                slug
+                            }
+                            frontmatter {
+                                title
+                                team
+                                date
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    );
 
-	const project = path.resolve(`./src/templates/project.js`);
-	const result = await graphql(
-		`
-			{
-				allMarkdownRemark(
-					sort: { fields: [frontmatter___date], order: DESC }
-					limit: 1000
-				) {
-					edges {
-						node {
-							fields {
-								slug
-							} 	
-							frontmatter {
-								title,
-								team
-							}
-						}
-					}
-				}
-			}
-		`
-	);
-
-	if (result.errors) {
-		throw result.errors;
-	}
-
-	// Create blog posts pages.
-	const posts = result.data.allMarkdownRemark.edges;
-
-	// Extract members:
-  let teamMembers = []
-  // Iterate through each post, putting all found team memebers into `teamMembers`
-  console.log(posts[0].node.frontmatter.team[0]);
-  posts.forEach(edge => {
-    if (_.get(edge, `node.frontmatter.team`)) {
-      teamMembers = [...edge.node.frontmatter.team];
+    if (postsData.errors) {
+        throw postsData.errors;
     }
-  })
 
-  // Eliminate duplicate tags
-  teamMembers = _.uniq(teamMembers);
+    const teamMembersData = await graphql(
+        `
+            {
+                allMarkdownRemark(filter: {frontmatter: {fullName: {ne: null}}}) {
+                    edges {
+                        node {
+                            fields {
+                                slug
+                            }
+                            frontmatter {
+                                fullName
+                                link
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    );
 
-  const archive = path.resolve(`./src/templates/archive.js`);
+    if (teamMembersData.errors) {
+        throw teamMembersData.errors;
+    }
 
-  createPage({
-	 	component: archive,
-	  path: `/archive`,
-	  context: {
-	  	test: 'test',
-			teamMembers
-		},
-})
+    const posts = postsData.data.allMarkdownRemark.edges;
+    const teamMembers = teamMembersData.data.allMarkdownRemark.edges;
 
-
-	posts.forEach((post, index) => {
-		const previous =
-			index === posts.length - 1 ? null : posts[index + 1].node;
-		const next = index === 0 ? null : posts[index - 1].node;
-
-		createPage({
-			path: post.node.fields.slug,
-			component: project,
-			context: {
-				slug: post.node.fields.slug,
-				previous,
-				next,
-				teamMembers
-			},
-		});
-	});
-
-  // Make member pages
-  teamMembers.forEach(member => {
-    const memberPath = `/${_.kebabCase(member)}/`
+    const archive = path.resolve(`./src/templates/archive.js`);
 
     createPage({
-      path: memberPath,
-      component: path.resolve(`src/templates/teamMembers.js`),
-      context: {
-        member
-      },
-    })
-  });
+        component: archive,
+        path: `/archive`
+    });
+
+    // Create pages for each post
+    posts.forEach((post, index) => {
+        const previous =
+            index === posts.length - 1 ? null : posts[index + 1].node;
+        const next = index === 0 ? null : posts[index - 1].node;
+
+        createPage({
+            path: post.node.fields.slug,
+            component: project,
+            context: {
+                slug: post.node.fields.slug,
+                next,
+                previous
+            }
+        });
+    });
+
+    // Create pages for each member
+    teamMembers.forEach((member, index) => {
+        createPage({
+            path: member.node.fields.slug,
+            component: project,
+            context: {
+                slug: member.node.fields.slug
+            }
+        });
+    });
+
+
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-	const { createNodeField } = actions;
-
-	if (node.internal.type === `MarkdownRemark`) {
-		const value = createFilePath({ node, getNode });
-		createNodeField({
-			name: `slug`,
-			node,
-			value,
-		});
-	}
+    const { createNodeField } = actions;
+    if (node.internal.type === `MarkdownRemark`) {
+        const value = createFilePath({ node, getNode });
+        createNodeField({
+            name: `slug`,
+            node,
+            value
+        });
+    }
 };

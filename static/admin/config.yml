@@ -14,18 +14,30 @@ collections:
       editor:
           preview: false
       fields:
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-          - { label: 'Description', name: 'description', widget: 'string' }
-          - { label: 'Body', name: 'body', widget: 'markdown' }
-          - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['first-name', 'last-name'], valueField: ['first-name','last-name']}}
-
+        - { label: 'Title', name: 'title', widget: 'string' }
+        - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+        - { label: 'Description', name: 'description', widget: 'string' }
+        - { label: 'Body', name: 'body', widget: 'markdown' }
+        - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['fullName'], valueField: 'fullName'}}
     - name: 'team-members'
       label: 'Team Members'
       folder: 'content/team-members'
-      identifier_field: 'first-name'
+      identifier_field: name
       create: true
       fields:
-        - { label: 'First Name', name: 'first-name', widget: 'string'}  
-        - { label: 'Last Name', name: 'last-name', widget: 'string'}  
+        - { label: 'Full Name', name: 'fullName', widget: 'string'}  
         - { label: 'Link', name: 'link', widget: 'string'}
+    - name: 'home-images'
+      label: 'Home Images'
+      folder: 'content/home-images'
+      create: true
+      fields:
+      - label: 'Title'
+        name: 'title'
+        widget: 'string'
+      - label: 'Cover Image'
+        name: 'cover-image'
+        widget: 'list'
+        fields: 
+        - {label: 'Main Image', name: 'mainImage', widget: 'image'}
+        - {label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
