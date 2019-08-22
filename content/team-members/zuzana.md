@@ -1,6 +1,5 @@
 ---
-first-name: Zuzana
-last-name: Kostelanská
+fullName: Zuzana Kostelanska
 link: 'https://www.facebook.com/zkostelanska'
 ---
 
