@@ -1,6 +1,5 @@
 ---
-first-name: Kimberley
-last-name: Cosmilla
+fullName: Kimberley Cosmilla
 link: 'https://www.facebook.com/kimberley.cosmilla'
 ---
 
