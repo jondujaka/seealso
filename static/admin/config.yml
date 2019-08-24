@@ -2,8 +2,8 @@ backend:
     name: git-gateway
     branch: master
 
-media_folder: static/img
-public_folder: /img
+media_folder: static/assets
+public_folder: /assets
 
 collections:
     - name: 'project'
@@ -29,15 +29,19 @@ collections:
         - { label: 'Link', name: 'link', widget: 'string'}
     - name: 'home-images'
       label: 'Home Images'
-      folder: 'content/home-images'
+      file: 'content/home-images.md'
       create: true
       fields:
-      - label: 'Title'
-        name: 'title'
-        widget: 'string'
-      - label: 'Cover Image'
-        name: 'cover-image'
-        widget: 'list'
-        fields: 
-        - {label: 'Main Image', name: 'mainImage', widget: 'image'}
-        - {label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
+        - label: "Type"
+          name: "type"
+          widget: "hidden"
+          default: "home-images"
+        - label: 'Title'
+          name: 'title'
+          widget: 'string'
+        - label: 'Cover Image'
+          name: 'cover-image'
+          widget: 'list'
+          fields: 
+          - {label: 'Main Image', name: 'mainImage', widget: 'image'}
+          - {label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}

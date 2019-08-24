@@ -1,10 +1,13 @@
 const _ = require('lodash');
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { fmImagesToRelative } = require(`gatsby-remark-relative-images`);
 
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions;
+
     const project = path.resolve(`./src/templates/project.js`);
+
     const postsData = await graphql(
         `
             {
@@ -37,7 +40,9 @@ exports.createPages = async ({ graphql, actions }) => {
     const teamMembersData = await graphql(
         `
             {
-                allMarkdownRemark(filter: {frontmatter: {fullName: {ne: null}}}) {
+                allMarkdownRemark(
+                    filter: { frontmatter: { fullName: { ne: null } } }
+                ) {
                     edges {
                         node {
                             fields {
@@ -95,12 +100,13 @@ exports.createPages = async ({ graphql, actions }) => {
             }
         });
     });
-
-
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
+
+    fmImagesToRelative(node); // convert image paths for gatsby images
+
     if (node.internal.type === `MarkdownRemark`) {
         const value = createFilePath({ node, getNode });
         createNodeField({
