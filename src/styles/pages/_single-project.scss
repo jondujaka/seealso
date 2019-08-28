@@ -4,6 +4,7 @@
 }
 
 .project-title {
+	font-size: 4rem;
 	margin: 0;
 	position: fixed;
 	text-align: center;
@@ -11,12 +12,12 @@
 	z-index: 2;
 	transform: translateX(-50%);
 	left: 50%;
+	width: calc(100% - (#{$mainPadding} * 2))
 }
 
 .project-images,
 .project-content {
-	padding-top: $navHeight * 2.5;
-	padding-bottom: $mainPadding;
+	padding: $navHeight * 3 $mainPadding $mainPadding $mainPadding;
 	flex-basis: 50%;
 	overflow-y: auto;
 }
