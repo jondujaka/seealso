@@ -9,6 +9,8 @@
 	text-align: center;
 	top: $navHeight;
 	z-index: 2;
+	transform: translateX(-50%);
+	left: 50%;
 }
 
 .project-images,

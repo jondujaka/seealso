@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link, graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
-import SVG from "react-inlinesvg";
-import Layout from "../components/Layout";
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
+import SVG from 'react-inlinesvg';
+import Layout from '../components/Layout';
 
 export const IndexPageTemplate = ({ images }) => {
 	const renderImage = (img, i) => {
@@ -20,10 +19,6 @@ export const IndexPageTemplate = ({ images }) => {
 			{images && images.map((img, index) => renderImage(img, index))}
 		</div>
 	);
-};
-
-IndexPageTemplate.propTypes = {
-	images: PropTypes.array
 };
 
 const IndexPage = ({ data }) => {

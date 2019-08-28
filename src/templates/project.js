@@ -1,49 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { kebabCase, get } from 'lodash';
-import Helmet from 'react-helmet';
+import { get } from 'lodash';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import Layout from '../components/Layout';
-import {HTMLContent} from '../components/Content';
+import { HTMLContent } from '../components/Content';
 
-export const ProjectTemplate = ({content, members}) => {
-
+export const ProjectTemplate = ({ content, members }) => {
     console.log(content);
 
-    const { 
+    const {
         title,
-        images, 
-        tags, 
+        images,
+        tags,
         description,
         year,
         client
     } = content.frontmatter;
 
     const displayMember = (member, i) => {
-        return (
-            <a href={member.node.fields.slug} key={i}>{member.node.frontmatter.fullName}</a>
-        )
-    }
-
+        return <Link to={member.node.fields.slug} key={i} />;
+    };
 
     return (
         <>
             <h1 className="project-title">{title}</h1>
             <div className="single-project">
                 <div className="project-images">
-                    {images && 
-                        images.map((img, i) => 
+                    {images &&
+                        images.map((img, i) => (
                             <Img key={i} fluid={img.childImageSharp.fluid} />
-                        )
-                    }
+                        ))}
                 </div>
                 <div className="project-content">
-
                     <HTMLContent content={content.html} />
 
                     <div className="project-technical-info">
-                        {tags && tags.map((tag, i) => <span key={i}>{tag}</span>)}
+                        {tags &&
+                            tags.map((tag, i) => <span key={i}>{tag}</span>)}
                         <HTMLContent content={description} />
                     </div>
 
@@ -55,10 +48,12 @@ export const ProjectTemplate = ({content, members}) => {
                             </li>
                             <li>
                                 <span>Team</span>
-                                {members 
-                                    && members.map((member, i) => 
-                                        member.node.frontmatter.display && displayMember(member, i))
-                                }
+                                {members &&
+                                    members.map(
+                                        (member, i) =>
+                                            member.node.frontmatter.display &&
+                                            displayMember(member, i)
+                                    )}
                             </li>
                             <li>
                                 <span>Year</span>
@@ -73,58 +68,31 @@ export const ProjectTemplate = ({content, members}) => {
 };
 
 const Project = props => {
-
     const projectData = props.data.projectContent;
     const membersInfoArray = props.data.teamMembersInfo.edges;
-    
-    if(get(projectData.frontmatter, 'team')){
-        projectData.frontmatter.team.map((member, index) => {
-            membersInfoArray.map(memberInfo => {
-                if(member === memberInfo.node.frontmatter.fullName){
+
+    if (get(projectData.frontmatter, 'team')) {
+        projectData.frontmatter.team.forEach((member, index) => {
+            membersInfoArray.forEach(memberInfo => {
+                if (member === memberInfo.node.frontmatter.fullName) {
                     memberInfo.node.frontmatter.display = true;
                 }
             });
         });
     }
 
-    const { next, previous } = props.pageContext;
-
-
-    const pagination = () => {
-        const prevButton = (
-            <li>
-                <Link to={previous && previous.fields.slug} rel="prev">
-                    ← {previous && previous.frontmatter.title}
-                </Link>
-            </li>
-        );
-
-        const nextButton = (
-            <li>
-                <Link to={next && next.fields.slug} rel="next">
-                    {next && next.frontmatter.title} →
-                </Link>
-            </li>
-        );
-
-        return (
-            <ul className="pagination">
-                {previous && prevButton}
-                {next && nextButton}
-            </ul>
-        );
+    const pagination = {
+        next: props.pageContext.next,
+        previous: props.pageContext.previous
     };
 
     return (
-        <Layout 
+        <Layout
             title={`${projectData.frontmatter.title} - See Also`}
-            showFilter={true}
+            showFilter={false}
+            pagination={pagination}
         >
-            <ProjectTemplate
-                content={projectData}
-                members={membersInfoArray}
-            />
-            {pagination()}
+            <ProjectTemplate content={projectData} members={membersInfoArray} />
         </Layout>
     );
 };
@@ -154,7 +122,9 @@ export const data = graphql`
                 }
             }
         }
-        teamMembersInfo: allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "team-member"}}}) {
+        teamMembersInfo: allMarkdownRemark(
+            filter: { frontmatter: { templateKey: { eq: "team-member" } } }
+        ) {
             edges {
                 node {
                     frontmatter {

@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Layout from '../components/Layout.js';
 import ProjectsList from '../components/ProjectsList.js';
-import Navbar from '../components/Navbar.js';
 
 export default props => {
 	const projectsData = useStaticQuery(graphql`
@@ -17,6 +16,7 @@ export default props => {
 							title
 							templateKey
 							team
+							tags
 						}
 						fields {
 							slug
@@ -31,8 +31,9 @@ export default props => {
 	const items = projectsData.allMarkdownRemark.edges;
 	return (
 		<Layout title="Archive - See Also" showFilter={true}>
-			<h2>Archive page</h2> 
-			<ProjectsList items={items} />
+			<div class="archive">
+				<ProjectsList items={items} />
+			</div>
 		</Layout>
 	);
 };

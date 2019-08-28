@@ -1,0 +1,55 @@
+.archive {
+	padding-top: $navHeight;
+}
+
+.projects-list {
+	.link-wrapper {
+		display: inline;
+
+		span {
+			display: inline-block;
+		}
+	}
+
+	.project-thumbnail {
+		font-size: 0.2em;
+		display: inline-flex;
+		background: grey;
+		vertical-align: middle;
+		height: 90px;
+		align-items: center;
+		justify-content: center;
+		width: 180px;
+		color: white;
+		margin: 0 1.5rem;
+	}
+
+	a {
+		position: relative;
+		line-height: 2;
+		font-size: 5rem;
+		text-decoration: none;
+
+		.project-thumb {
+			content: 'image';
+			background: grey;
+			display: inline-flex;
+			font-size: 1rem;
+			height: 90px;
+			color: white;
+			width: 150px;
+			justify-content: center;
+			align-items: center;
+			margin: 0 20px;
+			transform: translateY(-18px);
+		}
+		.tags {
+			display: flex;
+			font-size: 1rem;
+			position: absolute;
+			top: 6rem;
+			left: 6rem;
+			white-space: nowrap;
+		}
+	}
+}

@@ -4,13 +4,33 @@
 	z-index: 2;
 	width: calc(100% - 2 * #{$mainPadding});
 	left: $mainPadding;
-	top:  $mainPadding;
+	top: $mainPadding;
+	display: flex;
+	justify-content: space-between;
 
 	ul {
 		display: flex;
 
+		// Archive and Info buttons
+		&.main-nav {
+			justify-content: flex-start;
+
+			li {
+				margin-right: $mainPadding;
+			}
+		}
+
+		// Pagination and Archive button
+		&.secondary-nav {
+			justify-content: flex-end;
+
+			li {
+				margin-left: $mainPadding;
+			}
+		}
+
+		// Common styles
 		li {
-			margin-right: 1rem;
 			border: 1px solid black;
 			border-top: none;
 			min-width: 7.8125rem;
@@ -19,8 +39,8 @@
 			a {
 				display: block;
 				text-decoration: none;
-				padding: .25rem;
-				transition: padding .2s ease-in-out;
+				padding: 0.25rem;
+				transition: padding 0.2s ease-in-out;
 
 				&.active {
 					background: black;
@@ -28,27 +48,24 @@
 				}
 			}
 
-			&:not(.filter){
+			&:not(.filter) {
 				a:hover {
-					padding-top: 1.5rem;
+					padding-top: 2.25rem;
 				}
 			}
 		}
+	}
 
-		.filter {
-			margin-right: 0;
-			margin-left: auto;
-			
-			a span {
-				display: block;
-				width: 100%;
-				white-space: nowrap;
-				transition: width .2s ease-in-out;
-			}
+	.filter {
+		a span {
+			display: block;
+			width: 100%;
+			white-space: nowrap;
+			transition: width 0.2s ease-in-out;
+		}
 
-			a:hover span{
-				width: 0;
-			}
+		a:hover span {
+			width: 0;
 		}
 	}
 }
