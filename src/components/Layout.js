@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import Navbar from '../components/Navbar'
+import SeeAlso from '../components/SeeAlso'
 import '../styles/index.scss';
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from "gatsby"
@@ -46,6 +47,7 @@ const TemplateWrapper = ({ children, title, description, showFilter }) => {
       </Helmet>
       <Navbar showFilter={showFilter}/>
       <div>{children}</div>
+      <SeeAlso />
     </div>
   )
 }
