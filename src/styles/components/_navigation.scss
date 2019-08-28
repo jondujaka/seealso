@@ -1,0 +1,54 @@
+.navbar {
+	position: fixed;
+	height: $navHeight;
+	z-index: 2;
+	width: calc(100% - 2 * #{$mainPadding});
+	left: $mainPadding;
+	top:  $mainPadding;
+
+	ul {
+		display: flex;
+
+		li {
+			margin-right: 1rem;
+			border: 1px solid black;
+			border-top: none;
+			min-width: 7.8125rem;
+			height: min-content;
+
+			a {
+				display: block;
+				text-decoration: none;
+				padding: .25rem;
+				transition: padding .2s ease-in-out;
+
+				&.active {
+					background: black;
+					color: white;
+				}
+			}
+
+			&:not(.filter){
+				a:hover {
+					padding-top: 1.5rem;
+				}
+			}
+		}
+
+		.filter {
+			margin-right: 0;
+			margin-left: auto;
+			
+			a span {
+				display: block;
+				width: 100%;
+				white-space: nowrap;
+				transition: width .2s ease-in-out;
+			}
+
+			a:hover span{
+				width: 0;
+			}
+		}
+	}
+}

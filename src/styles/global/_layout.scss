@@ -1,0 +1,13 @@
+body {
+	padding: 0 $mainPadding;
+	padding-top: $navHeight;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+
+	li {
+		list-style-type: none;
+	}
+}

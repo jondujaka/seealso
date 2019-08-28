@@ -1,47 +1,28 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import React, { useState } from 'react';
+import { Link } from 'gatsby';
 
-const Navbar = class extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      active: false,
-      navBarActiveClass: '',
-    }
-  }
+const Navbar = ({showFilter}) => {
+	const [filterState, setFilterState] = useState(false); 
 
-  toggleHamburger = () => {
-    // toggle the active boolean in the state
-    this.setState(
-      {
-        active: !this.state.active,
-      },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: 'is-active',
-            })
-          : this.setState({
-              navBarActiveClass: '',
-            })
-      }
-    )
-  }
-
-  render() {
-    return (
-      <nav
-        className="navbar is-transparent"
-        role="navigation"
-        aria-label="main-navigation"
-      ><h4>See also</h4>
-      </nav>
-    )
-  }
+	return (
+		<nav className='navbar'>
+			<ul>
+				<li><Link to="/archive" activeClassName="active">Archive</Link></li>
+				<li><Link to="/info" activeClassName="active">Info</Link></li>
+				{showFilter && (
+					<li class="filter text-right">
+						<a href="#" onClick={() => setFilterState(!filterState)} ><span>Filter</span></a>
+						{filterState && (
+							<ul class="filter">
+								<li><span>asd</span></li>
+								<li><span>asdadas</span></li>
+							</ul>
+						)}
+					</li>
+				)}
+			</ul>
+		</nav>
+	)
 }
 
-export default Navbar
+export default Navbar;

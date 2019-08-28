@@ -7,32 +7,75 @@ import Img from 'gatsby-image';
 import Layout from '../components/Layout';
 import {HTMLContent} from '../components/Content';
 
-export const ProjectTemplate = ({
-    content,
-    contentComponent,
-    description,
-    title,
-    helmet
-}) => {
+export const ProjectTemplate = ({content, members}) => {
+
+    console.log(content);
+
+    const { 
+        title,
+        images, 
+        tags, 
+        description,
+        year,
+        client
+    } = content.frontmatter;
+
+    const displayMember = (member, i) => {
+        return (
+            <a href={member.node.fields.slug} key={i}>{member.node.frontmatter.fullName}</a>
+        )
+    }
 
 
     return (
-        <div>
-            <h2>{title}</h2>
-            {content.frontmatter.images && 
-                content.frontmatter.images.map(img => 
-                    <Img fluid={img.childImageSharp.fluid} />
-                )
-            }
-            <HTMLContent content={content.html} />
-        </div>
+        <>
+            <h1 className="project-title">{title}</h1>
+            <div className="single-project">
+                <div className="project-images">
+                    {images && 
+                        images.map((img, i) => 
+                            <Img key={i} fluid={img.childImageSharp.fluid} />
+                        )
+                    }
+                </div>
+                <div className="project-content">
+
+                    <HTMLContent content={content.html} />
+
+                    <div className="project-technical-info">
+                        {tags && tags.map((tag, i) => <span key={i}>{tag}</span>)}
+                        <HTMLContent content={description} />
+                    </div>
+
+                    <div className="project-info">
+                        <ul>
+                            <li>
+                                <span>Client</span>
+                                <span>{client}</span>
+                            </li>
+                            <li>
+                                <span>Team</span>
+                                {members 
+                                    && members.map((member, i) => 
+                                        member.node.frontmatter.display && displayMember(member, i))
+                                }
+                            </li>
+                            <li>
+                                <span>Year</span>
+                                <span>{year}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 
-const Project = ({ pageContext, data }) => {
-    const projectData = data.projectContent;
-    
-    const membersInfoArray = data.teamMembersInfo.edges;
+const Project = props => {
+
+    const projectData = props.data.projectContent;
+    const membersInfoArray = props.data.teamMembersInfo.edges;
     
     if(get(projectData.frontmatter, 'team')){
         projectData.frontmatter.team.map((member, index) => {
@@ -44,7 +87,7 @@ const Project = ({ pageContext, data }) => {
         });
     }
 
-    const { next, previous } = pageContext;
+    const { next, previous } = props.pageContext;
 
 
     const pagination = () => {
@@ -65,30 +108,22 @@ const Project = ({ pageContext, data }) => {
         );
 
         return (
-            <ul>
+            <ul className="pagination">
                 {previous && prevButton}
                 {next && nextButton}
             </ul>
         );
     };
-    
-    const displayMember = (member, i) => {
-        return (
-            <a href={member.node.fields.slug} key={i}>{member.node.frontmatter.fullName}</a>
-        )
-    }
-
 
     return (
-        <Layout title="test">
+        <Layout 
+            title={`${projectData.frontmatter.title} - See Also`}
+            showFilter={true}
+        >
             <ProjectTemplate
-                title={projectData.frontmatter.title}
                 content={projectData}
+                members={membersInfoArray}
             />
-            {membersInfoArray 
-                && membersInfoArray.map((member, i) => 
-                member.node.frontmatter.display && displayMember(member, i))
-            }
             {pagination()}
         </Layout>
     );
@@ -107,6 +142,9 @@ export const data = graphql`
                 date(formatString: "MMMM DD, YYYY")
                 description
                 team
+                client
+                year
+                tags
                 images {
                     childImageSharp {
                         fluid(maxWidth: 1600) {

@@ -1,0 +1,36 @@
+.single-project {
+	display: flex;
+	max-height: 100vh;
+}
+
+.project-title {
+	margin: 0;
+	position: fixed;
+	text-align: center;
+	top: $navHeight;
+	z-index: 2;
+}
+
+.project-images,
+.project-content {
+	padding-top: $navHeight * 1.5;
+	padding-bottom: $mainPadding;
+	flex-basis: 50%;
+	overflow-y: auto;
+}
+
+.project-images {
+	padding-right: $mainPadding / 2;
+
+	.gatsby-image-wrapper:not(:first-of-type){
+		margin-top: $mainPadding;
+	}
+}
+
+.project-content {
+	padding-left: $mainPadding / 2;
+
+	p:first-of-type {
+		margin-top: 0;
+	}
+}

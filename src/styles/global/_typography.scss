@@ -16,3 +16,19 @@ body {
   font-family: "OS Sans Affair";
   font-size: 1.5rem;
 }
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}

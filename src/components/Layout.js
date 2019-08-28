@@ -5,7 +5,7 @@ import '../styles/index.scss';
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from "gatsby"
 
-const TemplateWrapper = ({ children, title, description }) => {
+const TemplateWrapper = ({ children, title, description, showFilter }) => {
 
   return (
     <div>
@@ -44,7 +44,7 @@ const TemplateWrapper = ({ children, title, description }) => {
         <meta property="og:url" content="/" />
         <meta property="og:image" content={`${withPrefix("/")}img/og-image.jpg`} />
       </Helmet>
-      <Navbar />
+      <Navbar showFilter={showFilter}/>
       <div>{children}</div>
     </div>
   )
