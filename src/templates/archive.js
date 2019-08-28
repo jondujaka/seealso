@@ -1,13 +1,13 @@
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import ProjectsList from "../components/ProjectsList.js";
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import ProjectsList from '../components/ProjectsList.js';
 
 export default props => {
 	const projectsData = useStaticQuery(graphql`
 		query {
 			# Get all the projects
 			allMarkdownRemark(
-				filter: {frontmatter: { templateKey: { eq: "project" }}}
+				filter: { frontmatter: { templateKey: { eq: "project" } } }
 			) {
 				edges {
 					node {
@@ -15,6 +15,9 @@ export default props => {
 							title
 							templateKey
 							team
+						}
+						fields {
+							slug
 						}
 						html
 					}

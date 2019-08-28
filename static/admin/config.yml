@@ -17,6 +17,7 @@ collections:
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Images', name: 'images', widget: 'list', field: { label: 'Image', name: 'image', widget: 'image'} }
       - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['fullName'], valueField: 'fullName'}}
   - name: 'team-members'
     label: 'Team Members'
@@ -24,8 +25,9 @@ collections:
     identifier_field: name
     create: true
     fields:
-      - { label: 'Full Name', name: 'fullName', widget: 'string'}  
-      - { label: 'Link', name: 'link', widget: 'string'}
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "team-member" }
+      - { label: 'Full Name', name: 'fullName', widget: 'string' }  
+      - { label: 'Link', name: 'link', widget: 'string' }
   - name: "pages"
     label: "Pages"
     files:
