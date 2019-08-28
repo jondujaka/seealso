@@ -5,8 +5,8 @@ import '../styles/index.scss';
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from "gatsby"
 
-const TemplateWrapper = ({ children }) => {
-  const { title, description } = useSiteMetadata()
+const TemplateWrapper = ({ children, title, description }) => {
+
   return (
     <div>
       <Helmet>

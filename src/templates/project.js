@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { kebabCase, get } from 'lodash';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 import Layout from '../components/Layout';
 import {HTMLContent} from '../components/Content';
 
@@ -14,11 +15,17 @@ export const ProjectTemplate = ({
     helmet
 }) => {
 
+
     return (
-        <section className="section">
+        <div>
             <h2>{title}</h2>
-            <HTMLContent content={content} />
-        </section>
+            {content.frontmatter.images && 
+                content.frontmatter.images.map(img => 
+                    <Img fluid={img.childImageSharp.fluid} />
+                )
+            }
+            <HTMLContent content={content.html} />
+        </div>
     );
 };
 
@@ -73,10 +80,10 @@ const Project = ({ pageContext, data }) => {
 
 
     return (
-        <Layout>
+        <Layout title="test">
             <ProjectTemplate
                 title={projectData.frontmatter.title}
-                content={projectData.html}
+                content={projectData}
             />
             {membersInfoArray 
                 && membersInfoArray.map((member, i) => 
@@ -100,6 +107,13 @@ export const data = graphql`
                 date(formatString: "MMMM DD, YYYY")
                 description
                 team
+                images {
+                    childImageSharp {
+                        fluid(maxWidth: 1600) {
+                            ...GatsbyImageSharpFluid_tracedSVG
+                        }
+                    }
+                }
             }
         }
         teamMembersInfo: allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "team-member"}}}) {
