@@ -24,7 +24,6 @@ const Navbar = ({ showFilter, pagination }) => {
 				{showFilter && (
 					<li className="filter text-right">
 						<button
-							href="#"
 							onClick={() => setFilterState(!filterState)}
 						>
 							<span>Filter</span>

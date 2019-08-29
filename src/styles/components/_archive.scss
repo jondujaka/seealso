@@ -3,6 +3,16 @@
 }
 
 .projects-list {
+	.view-switcher {
+		position: fixed;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.list-link {
+		display: block;
+		line-height: 1.5 !important;
+	}
 	.link-wrapper {
 		display: inline;
 
