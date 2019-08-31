@@ -23,9 +23,7 @@ const Navbar = ({ showFilter, pagination }) => {
 			<ul className="secondary-nav">
 				{showFilter && (
 					<li className="filter text-right">
-						<button
-							onClick={() => setFilterState(!filterState)}
-						>
+						<button onClick={() => setFilterState(!filterState)}>
 							<span>Filter</span>
 						</button>
 						{filterState && (
