@@ -3,14 +3,15 @@ import { get } from 'lodash';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import Layout from '../components/Layout';
-import { HTMLContent } from '../components/Content';
+import RenderHtml from '../components/RenderHtml';
+import Tags from '../components/Tags';
 
 export const ProjectTemplate = ({ content, members }) => {
-    console.log(content);
 
     const {
         title,
         images,
+        team,
         tags,
         description,
         year,
@@ -21,26 +22,29 @@ export const ProjectTemplate = ({ content, members }) => {
         return <Link to={member.node.fields.slug} key={i} />;
     };
 
+    console.log(content.htmlAst);
     return (
         <>
             <h1 className="project-title">{title}</h1>
             <div className="single-project">
-                <div className="project-images">
+                <div className="project-images pr-1">
                     {images &&
                         images.map((img, i) => (
-                            <Img key={i} fluid={img.childImageSharp.fluid} />
+                            <Img className={i !== 0 ? 'mt-2' : ''} key={i} fluid={img.childImageSharp.fluid} />
                         ))}
                 </div>
-                <div className="project-content">
-                    <HTMLContent content={content.html} />
+                <div className="project-content pl-1">
+                    {RenderHtml(content.htmlAst)}
 
-                    <div className="project-technical-info">
-                        {tags &&
-                            tags.map((tag, i) => <span key={i}>{tag}</span>)}
-                        <HTMLContent content={description} />
+                    <div className="ml-1 mt-2">
+                    	<Tags tags={tags} />
                     </div>
 
-                    <div className="project-info">
+                    <div className="ml-1">
+                    	{/*<RenderHtml content={description} />*/}
+                    </div>
+
+                    <div className="project-info mt-2">
                         <ul>
                             <li>
                                 <span>Client</span>
@@ -104,7 +108,7 @@ export const data = graphql`
         projectContent: markdownRemark(fields: { slug: { eq: $slug } }) {
             id
             excerpt(pruneLength: 160)
-            html
+            htmlAst
             frontmatter {
                 title
                 date(formatString: "MMMM DD, YYYY")

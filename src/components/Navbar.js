@@ -8,12 +8,12 @@ const Navbar = ({ showFilter, pagination }) => {
 	return (
 		<nav className="navbar">
 			<ul className="main-nav">
-				<li>
+				<li className="mr-2">
 					<Link to="/archive" activeClassName="active">
 						Archive
 					</Link>
 				</li>
-				<li>
+				<li className="mr-2">
 					<Link to="/info" activeClassName="active">
 						Info
 					</Link>
@@ -22,16 +22,16 @@ const Navbar = ({ showFilter, pagination }) => {
 
 			<ul className="secondary-nav">
 				{showFilter && (
-					<li className="filter text-right">
+					<li className="filter text-right ml-2">
 						<button onClick={() => setFilterState(!filterState)}>
 							<span>Filter</span>
 						</button>
 						{filterState && (
 							<ul className="filter">
-								<li>
+								<li className="ml-2">
 									<span>asd</span>
 								</li>
-								<li>
+								<li className="ml-2">
 									<span>asdadas</span>
 								</li>
 							</ul>

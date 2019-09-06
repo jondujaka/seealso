@@ -2,9 +2,9 @@
 	position: fixed;
 	height: $navHeight;
 	z-index: 2;
-	width: calc(100% - 2 * #{$mainPadding});
-	left: $mainPadding;
-	top: $mainPadding;
+	width: calc(100% - 2 * #{$mainSpacing});
+	left: $mainSpacing;
+	top: $mainSpacing;
 	display: flex;
 	justify-content: space-between;
 
@@ -14,19 +14,11 @@
 		// Archive and Info buttons
 		&.main-nav {
 			justify-content: flex-start;
-
-			li {
-				margin-right: $mainPadding;
-			}
 		}
 
 		// Pagination and Archive button
 		&.secondary-nav {
 			justify-content: flex-end;
-
-			li {
-				margin-left: $mainPadding;
-			}
 		}
 
 		// Common styles

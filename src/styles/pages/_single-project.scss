@@ -5,6 +5,7 @@
 
 .project-title {
 	font-size: 4rem;
+	font-weight: 400;
 	margin: 0;
 	position: fixed;
 	text-align: center;
@@ -12,27 +13,17 @@
 	z-index: 2;
 	transform: translateX(-50%);
 	left: 50%;
-	width: calc(100% - (#{$mainPadding} * 2))
+	width: calc(100% - (#{$mainSpacing} * 2))
 }
 
 .project-images,
 .project-content {
-	padding: $navHeight * 3 $mainPadding $mainPadding $mainPadding;
+	padding: $navHeight * 3 $mainSpacing $mainSpacing $mainSpacing;
 	flex-basis: 50%;
 	overflow-y: auto;
 }
 
-.project-images {
-	padding-right: $mainPadding / 2;
-
-	.gatsby-image-wrapper:not(:first-of-type){
-		margin-top: $mainPadding;
-	}
-}
-
 .project-content {
-	padding-left: $mainPadding / 2;
-
 	p:first-of-type {
 		margin-top: 0;
 	}

@@ -29,7 +29,7 @@ collections:
     create: true
     fields:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "team-member" }
-      - { label: 'Full Name', name: 'fullName', widget: 'string' }  
+      - { label: 'Full Name', name: 'fullName', widget: 'string' }
       - { label: 'Link', name: 'link', widget: 'string' }
   - name: "pages"
     label: "Pages"
