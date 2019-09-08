@@ -21,8 +21,6 @@ const TemplateWrapper = ({
 }) => {
 	return (
 		<div>
-			<Helmet>
-			</Helmet>
 			{showNav && (<Navbar showFilter={showFilter} pagination={pagination} />)}
 			<div>{children}</div>
 			<SeeAlso />

@@ -86,12 +86,6 @@ module.exports = {
 				theme_color: `#000`
 			}
 		},
-		{
-			resolve: `gatsby-plugin-offline`,
-			options: {
-				precachePages: [`/*`]
-			}
-		},
 		'gatsby-plugin-netlify' // make sure to keep it last in the array
 	]
 };
