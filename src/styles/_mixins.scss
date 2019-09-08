@@ -1,0 +1,26 @@
+$max: 4;
+$offset: 1;
+
+
+@mixin generate-classes($className, $styleName) {
+  $i: 0;
+  @while $i <= $max {
+    #{$className + $i} {
+      #{$styleName}: #{$i * $mainSpacing} !important;
+    }
+    $i: $i + $offset;
+  }
+}
+
+
+// Generate margin classes
+@include generate-classes('.ml-', 'margin-left');
+@include generate-classes('.mr-', 'margin-right');
+@include generate-classes('.mt-', 'margin-top');
+@include generate-classes('.mb-', 'margin-bottom');
+
+// Generate padding classes
+@include generate-classes('.pl-', 'padding-left');
+@include generate-classes('.pr-', 'padding-right');
+@include generate-classes('.pt-', 'padding-top');
+@include generate-classes('.pb-', 'padding-bottom');

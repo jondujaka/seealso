@@ -1,10 +1,21 @@
 // Normalize
 @import '../../node_modules/normalize-scss/sass/normalize/import-now';
 
+//Vars & Mixins
+@import 'vars';
+@import 'mixins';
+
 // Globals
+@import '/global/layout';
 @import '/global/typography';
 
 // Pages
+@import '/pages/single-project';
+@import '/pages/member-archive';
 
 // Components
-  
+@import '/components/see-also';
+@import '/components/home-images';
+@import '/components/archive';
+@import '/components/pagination';
+@import '/components/navigation';

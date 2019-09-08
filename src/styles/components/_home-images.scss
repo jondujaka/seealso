@@ -1,0 +1,21 @@
+.home-image {
+	position: relative;
+
+	> * {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.svg-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+
+		path,
+		polygon {
+			fill: transparent;
+			cursor: pointer;
+		}
+	}
+}

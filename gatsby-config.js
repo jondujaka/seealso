@@ -1,88 +1,78 @@
 module.exports = {
 	siteMetadata: {
-		title: `SEEALSO Studio`,
-		author: `Jon Dujaka`,
-		description: `Portfolio`,
-		siteUrl: `https://seealso.info/`,
-		// social: {
-		// 	twitter: `kylemathews`,
-		// },
+		title: "See Also portfolio",
+		description:
+			"See also portfolio website"
 	},
 	plugins: [
-		`gatsby-plugin-netlify-cms`,
+		"gatsby-plugin-react-helmet",
+		"gatsby-plugin-sass",
 		{
-			resolve: `gatsby-source-filesystem`,
+			// keep as first gatsby-source-filesystem plugin for gatsby image support
+			resolve: "gatsby-source-filesystem",
 			options: {
-				path: `${__dirname}/content/projects`,
-				name: `project`,
-			},
-		},
-		{
-			resolve: `gatsby-source-filesystem`,
-			options: {
-				path: `${__dirname}/content/assets`,
-				name: `assets`,
-			},
-		},
-		{
-			resolve: `gatsby-source-filesystem`,
-			options: {
-				path: `${__dirname}/content/team-members`,
-				name: 'team-members'
+				path: `${__dirname}/static/img`,
+				name: "uploads"
 			}
 		},
 		{
-	    resolve: `gatsby-plugin-favicon`,
-	    options: {
-	      logo: "./static/favicon.png",
-	    }
-	  },
+			resolve: "gatsby-source-filesystem",
+			options: {
+				path: `${__dirname}/src/pages`,
+				name: "pages"
+			}
+		},
 		{
-			resolve: `gatsby-transformer-remark`,
+			resolve: "gatsby-source-filesystem",
+			options: {
+				path: `${__dirname}/src/img`,
+				name: "images"
+			}
+		},
+		"gatsby-plugin-sharp",
+		"gatsby-transformer-sharp",
+		{
+			resolve: "gatsby-transformer-remark",
 			options: {
 				plugins: [
 					{
-						resolve: `gatsby-remark-images`,
+						resolve: "gatsby-remark-relative-images",
 						options: {
-							maxWidth: 590,
-						},
+							name: "uploads"
+						}
 					},
 					{
-						resolve: `gatsby-remark-responsive-iframe`,
+						resolve: "gatsby-remark-images",
 						options: {
-							wrapperStyle: `margin-bottom: 1.0725rem`,
-						},
+							// It's important to specify the maxWidth (in pixels) of
+							// the content container as this plugin uses this as the
+							// base for generating different widths of each image.
+							maxWidth: 2048
+						}
 					},
-					`gatsby-remark-prismjs`,
-					`gatsby-remark-copy-linked-files`,
-					`gatsby-remark-smartypants`,
-				],
-			},
+					{
+						resolve: "gatsby-remark-copy-linked-files",
+						options: {
+							destinationDir: "static"
+						}
+					},
+					`gatsby-remark-lazy-load`
+				]
+			}
 		},
-		`gatsby-transformer-sharp`,
-		`gatsby-plugin-sharp`,
 		{
-			resolve: `gatsby-plugin-google-analytics`,
+			resolve: "gatsby-plugin-netlify-cms",
 			options: {
-				//trackingId: `ADD YOUR TRACKING ID HERE`,
-			},
+				modulePath: `${__dirname}/src/cms/cms.js`
+			}
 		},
-		`gatsby-plugin-feed`,
 		{
-			resolve: `gatsby-plugin-manifest`,
+			resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
 			options: {
-				name: `See Also Portfolio`,
-				short_name: `SeeAlso`,
-				start_url: `/`,
-				background_color: `#ffffff`,
-				theme_color: `#000`,
-				display: `minimal-ui`,
-				icon: `content/assets/favicon.png`,
-			},
-		},
-		`gatsby-plugin-offline`,
-		`gatsby-plugin-react-helmet`,
-		`gatsby-plugin-sass`,
-		`gatsby-plugin-styled-components`
-	],
+				develop: true, // Activates purging in npm run develop
+				purgeOnly: ["/all.sass"] // applies purging only on the bulma css file
+			}
+		}, // must be after other CSS plugins
+		"gatsby-plugin-netlify" // make sure to keep it last in the array
+	]
 };

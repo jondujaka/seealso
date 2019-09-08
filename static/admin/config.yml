@@ -1,43 +1,51 @@
 backend:
-    name: git-gateway
-    branch: master
+  name: git-gateway
+  branch: master
 
 media_folder: static/img
 public_folder: /img
 
 collections:
-    - name: 'project'
-      label: 'Project'
-      folder: 'content/projects'
-      create: true
-      slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-      editor:
-          preview: false
-      fields:
-        - { label: 'Title', name: 'title', widget: 'string' }
-        - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-        - { label: 'Description', name: 'description', widget: 'string' }
-        - { label: 'Body', name: 'body', widget: 'markdown' }
-        - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['fullName'], valueField: 'fullName'}}
-    - name: 'team-members'
-      label: 'Team Members'
-      folder: 'content/team-members'
-      identifier_field: name
-      create: true
-      fields:
-        - { label: 'Full Name', name: 'fullName', widget: 'string'}  
-        - { label: 'Link', name: 'link', widget: 'string'}
-    - name: 'home-images'
-      label: 'Home Images'
-      folder: 'content/home-images'
-      create: true
-      fields:
-      - label: 'Title'
-        name: 'title'
-        widget: 'string'
-      - label: 'Cover Image'
-        name: 'cover-image'
-        widget: 'list'
-        fields: 
-        - {label: 'Main Image', name: 'mainImage', widget: 'image'}
-        - {label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
+  - name: 'project'
+    label: 'Project'
+    folder: 'src/pages/projects'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "project"}
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Tags', name: 'tags', widget: 'list', field: { label: 'Tag', name: 'tag', widget: 'string'} }
+      - { label: 'Description', name: 'description', widget: 'markdown' }
+      - { label: 'Client', name: 'client', widget: 'string' }
+      - { label: 'Team Members', name: 'team', widget: 'list', field: { label: 'Team Member', name: 'member', widget: 'relation', collection: 'team-members', searchFields: ['fullName'], valueField: 'fullName'}}
+      - { label: 'Year', name: 'year', widget: 'number', valueType: 'int', min: 1990 }
+      - { label: 'Images', name: 'images', widget: 'list', field: { label: 'Image', name: 'image', widget: 'image'} }
+      - { label: 'Publish Date', name: 'date', widget: 'date' }
+  - name: 'team-members'
+    label: 'Team Members'
+    folder: 'content/team-members'
+    identifier_field: name
+    create: true
+    fields:
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "team-member" }
+      - { label: 'Full Name', name: 'fullName', widget: 'string' }
+      - { label: 'Link', name: 'link', widget: 'string' }
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/index.md"
+        label: "Landing Page"
+        name: "index"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - {label: "Title", name: "title", widget: "string", default: "home-page"}
+          - {label: 'Main Image', name: 'mainImage', widget: 'image'}
+          - {label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
+      - file: "src/pages/about/index.md"
+        label: "About"
+        name: "about"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}

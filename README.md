@@ -1,4 +1,3 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <h1 align="center">
   SEE ALSO
 </h1>
@@ -8,17 +7,17 @@
     Navigate into your new site’s directory and start it up.
 
     ```sh
-    cd my-blog-starter/
-    gatsby develop
+    cd seealso
+    npm run dev
     ```
 
-1.  **Open the source code and start editing!**
+2.  **Open the source code and start editing!**
 
     Your site is now running at `http://localhost:8000`!
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-    Open the `my-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+    Open the `seealso` directory in your code editor of choice and edit any file. Save your changes and the browser will update in real time!
 
 ## 🧐 What's inside?
 
@@ -60,6 +59,4 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+12. **`README.md`**: A text file containing useful reference information about your project (THIS FILE).

@@ -1,0 +1,66 @@
+.navbar {
+	position: fixed;
+	height: $navHeight;
+	z-index: 2;
+	width: calc(100% - 2 * #{$mainSpacing * 2});
+	left: $mainSpacing * 2;
+	top: $mainSpacing * 2;
+	display: flex;
+	justify-content: space-between;
+
+	ul {
+		display: flex;
+
+		// Archive and Info buttons
+		&.main-nav {
+			justify-content: flex-start;
+		}
+
+		// Pagination and Archive button
+		&.secondary-nav {
+			justify-content: flex-end;
+		}
+
+		// Common styles
+		li {
+			border: 1px solid black;
+			border-top: none;
+			min-width: 7.8125rem;
+			height: min-content;
+
+			a {
+				display: block;
+				text-decoration: none;
+				padding: 0.25rem;
+				transition: padding 0.2s ease-in-out;
+
+				&.active {
+					background: black;
+					color: white;
+				}
+			}
+
+			&:not(.filter) {
+				a:hover {
+					padding-top: 2.25rem;
+				}
+			}
+		}
+	}
+
+	.filter {
+		button {
+			border: 0;
+		}
+		a span {
+			display: block;
+			width: 100%;
+			white-space: nowrap;
+			transition: width 0.2s ease-in-out;
+		}
+
+		a:hover span {
+			width: 0;
+		}
+	}
+}

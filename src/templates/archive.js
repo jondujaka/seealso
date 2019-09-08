@@ -1,82 +1,39 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
-
-import Filter from '../components/filter';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import Posts from '../components/posts';
+import { graphql, useStaticQuery } from 'gatsby';
+import Layout from '../components/Layout.js';
+import ProjectsList from '../components/ProjectsList.js';
 
 export default props => {
-	// Get all projects
-	const data = useStaticQuery(graphql`
+	const projectsData = useStaticQuery(graphql`
 		query {
-
-			site {
-				siteMetadata {
-					title
-				}
-			}
-			
-			# Get only the posts (only posts have date field, and sort by date)
+			# Get all the projects
 			allMarkdownRemark(
-				sort: { fields: [frontmatter___date], order: DESC },
-				filter: {frontmatter: {date: {ne: null}}}
+				filter: { frontmatter: { templateKey: { eq: "project" } } }
 			) {
 				edges {
 					node {
-						excerpt
+						frontmatter {
+							title
+							templateKey
+							team
+							tags
+						}
 						fields {
 							slug
 						}
-						frontmatter {
-							date(formatString: "MMMM DD, YYYY")
-							title
-							description
-						}
-					}
-				}
-			}
-
-			# Get only the team-members
-			allFile(filter: { sourceInstanceName: { eq: "team-members" } }) {
-				edges {
-					node {
-						id
-						name
-						childMarkdownRemark {
-							fields {
-								slug
-							}
-							frontmatter {
-								fullName
-								link
-							}
-						}
+						html
 					}
 				}
 			}
 		}
 	`);
 
-	const siteTitle = data.site.siteMetadata.title;
-	const posts = data.allMarkdownRemark.edges;
-	const team = data.allFile.edges;
-
-	let parsedMembers = [];
-
-	team.map(member =>{
-		const fullName = member.node.childMarkdownRemark.frontmatter.fullName;
-		parsedMembers.push({
-			fullName,
-			slug: member.node.childMarkdownRemark.fields.slug
-		});
-	});
-
+	const items = projectsData.allMarkdownRemark.edges;
 	return (
-		<Layout location={props.location} title={siteTitle}>
-			<SEO title="Archive" />
-			<Filter items={parsedMembers} />	
-			<Posts posts={posts} />
+		<Layout title="Archive - See Also" showFilter={true} showNav={true}>
+			<div className="archive">
+				<ProjectsList items={items} />
+			</div>
 		</Layout>
 	);
 };

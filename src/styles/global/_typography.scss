@@ -1,18 +1,45 @@
 @font-face {
-    font-family: 'OS Sans Affair';
-    src: url('../../static/fonts/OSSansAffair.eot');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'OS Sans Affair';
+	src: url('../../static/fonts/OSSansAffair.eot');
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-    font-family: 'OS Sans Affair';
-    src: url('../../static/fonts/OSSansAffair.woff2') format('woff2'),
-        url('../../static/fonts/OSSansAffair.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'OS Sans Affair';
+	src: url('../../static/fonts/OSSansAffair.woff2') format('woff2'),
+		url('../../static/fonts/OSSansAffair.woff') format('woff');
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
 }
 
 body {
-  font-family: "OS Sans Affair";
-  font-size: 1.5rem;
+	font-family: 'OS Sans Affair';
+	font-size: 100%;
+}
+
+p, a {
+	font-size: 1.5em;
+	line-height: 1.3;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
 }
