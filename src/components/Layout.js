@@ -5,6 +5,12 @@ import SeeAlso from '../components/SeeAlso';
 import '../styles/index.scss';
 import { withPrefix } from 'gatsby';
 
+// TemplateWrapper.propTypes = {
+// 	showNav: true,
+// 	showFilter: false,
+// 	title: 'See Also',
+// 	description: 'See Also, an amazing studio'
+// }
 const TemplateWrapper = ({
 	children,
 	title,

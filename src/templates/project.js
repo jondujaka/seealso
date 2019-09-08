@@ -92,6 +92,7 @@ const Project = props => {
     return (
         <Layout
             title={`${projectData.frontmatter.title} - See Also`}
+            showNav={true}
             showFilter={false}
             pagination={pagination}
         >

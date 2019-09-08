@@ -23,9 +23,9 @@ const ProjectsList = ({ items }) => {
 							key={`archive-${index}`}
 							className="list-link"
 						>
-							{item.node.frontmatter.title}
+							•{item.node.frontmatter.title}
 
-							<div class="project-thumbnail">
+							<div className="project-thumbnail">
 								project thumbnail
 							</div>
 						</Link>

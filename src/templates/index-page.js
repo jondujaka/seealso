@@ -56,7 +56,7 @@ const IndexPage = ({ data }) => {
 	const imagesArray = imagesData.markdownRemark.frontmatter.image;
 
 	return (
-		<Layout>
+		<Layout showNav={true}>
 			<IndexPageTemplate images={imagesArray} />
 		</Layout>
 	);

@@ -30,7 +30,7 @@ export default props => {
 
 	const items = projectsData.allMarkdownRemark.edges;
 	return (
-		<Layout title="Archive - See Also" showFilter={true}>
+		<Layout title="Archive - See Also" showFilter={true} showNav={true}>
 			<div className="archive">
 				<ProjectsList items={items} />
 			</div>
