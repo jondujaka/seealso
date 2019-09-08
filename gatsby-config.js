@@ -73,7 +73,7 @@ module.exports = {
 			}
 		}, // must be after other CSS plugins
 		{
-			resolve: 'gatsy-plugin-manifest',
+			resolve: 'gatsby-plugin-manifest',
 			options: {
 				name: `See Also Studio`,
 				short_name: `See Also`,
