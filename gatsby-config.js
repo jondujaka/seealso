@@ -73,6 +73,20 @@ module.exports = {
 				purgeOnly: ["/all.sass"] // applies purging only on the bulma css file
 			}
 		}, // must be after other CSS plugins
+		{
+			resolve: "gatsy-plugin-manifest",
+			options: {
+				name: `See Also Studio`,
+				short_name: `See Also`,
+				description: `The most amazing design studio`,
+				lang: `en`,
+				display: `standalone`,
+				icon: `${__dirname}/static/img/icon.png`,
+				start_url: `/`,
+				background_color: `#FFF`,
+				theme_color: `#000`
+			}
+		}
 		"gatsby-plugin-netlify" // make sure to keep it last in the array
 	]
 };
