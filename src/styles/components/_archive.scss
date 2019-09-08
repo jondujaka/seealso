@@ -38,7 +38,10 @@
 		position: relative;
 		line-height: 2;
 		font-size: 4rem;
-		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
 
 		.project-thumb {
 			content: 'image';

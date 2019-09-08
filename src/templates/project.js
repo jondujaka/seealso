@@ -22,7 +22,6 @@ export const ProjectTemplate = ({ content, members }) => {
         return <Link to={member.node.fields.slug} key={i} />;
     };
 
-    console.log(content.htmlAst);
     return (
         <>
             <h1 className="project-title">{title}</h1>

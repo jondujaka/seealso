@@ -15,7 +15,7 @@ const ProjectsList = ({ items }) => {
 			</button>
 			{items &&
 				items.map((item, index) => {
-					const title = item.node.frontmatter.title.split(' ');
+					const title = item.node.frontmatter.title;
 
 					return list ? (
 						<Link
@@ -32,23 +32,11 @@ const ProjectsList = ({ items }) => {
 					) : (
 						<div className="link-wrapper" key={`archive-${index}`}>
 							<Link to={item.node.fields.slug}>
-								{title.map((phrase, index) => {
-									return (
-										<span key={`${phrase}-index`}>
-											{index === 0 && <span>•</span>}
-
-											{phrase}
-
-											{index === title.length - 1 ? (
-												<div className="project-thumbnail">
-													project thumbnail
-												</div>
-											) : (
-												<span>&nbsp;</span>
-											)}
-										</span>
-									);
-								})}
+								•
+								{title}
+								<div className="project-thumbnail">
+									project thumbnail
+								</div>
 							</Link>
 						</div>
 					);

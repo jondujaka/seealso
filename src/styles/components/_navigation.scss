@@ -2,9 +2,9 @@
 	position: fixed;
 	height: $navHeight;
 	z-index: 2;
-	width: calc(100% - 2 * #{$mainSpacing});
-	left: $mainSpacing;
-	top: $mainSpacing;
+	width: calc(100% - 2 * #{$mainSpacing * 2});
+	left: $mainSpacing * 2;
+	top: $mainSpacing * 2;
 	display: flex;
 	justify-content: space-between;
 

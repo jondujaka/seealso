@@ -10,7 +10,8 @@ const TemplateWrapper = ({
 	title,
 	description,
 	showFilter,
-	pagination
+	pagination,
+	showNav
 }) => {
 	return (
 		<div>
@@ -52,7 +53,7 @@ const TemplateWrapper = ({
 					content={`${withPrefix('/')}img/og-image.jpg`}
 				/>
 			</Helmet>
-			<Navbar showFilter={showFilter} pagination={pagination} />
+			{showNav && (<Navbar showFilter={showFilter} pagination={pagination} />)}
 			<div>{children}</div>
 			<SeeAlso />
 		</div>
