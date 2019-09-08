@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import styled from 'styled-components';
 import Img from 'gatsby-image';
 import SVG from 'react-inlinesvg';
 import Layout from '../components/Layout';
