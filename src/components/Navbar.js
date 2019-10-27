@@ -9,6 +9,14 @@ const Navbar = ({ showFilter, pagination }) => {
 		<nav className="navbar">
 			<ul className="main-nav">
 				<li className="mr-2">
+					<Link
+						to="/"
+					  	activeClassName="active"
+					>
+						Home
+					</Link>
+				</li>
+				<li className="mr-2">
 					<Link to="/archive" activeClassName="active">
 						Archive
 					</Link>

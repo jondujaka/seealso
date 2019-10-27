@@ -1,6 +1,10 @@
 .single-project {
 	display: flex;
 	max-height: 100vh;
+
+	a {
+		text-decoration: underline;
+	}
 }
 .image-wrapper {
 	position: relative;
@@ -45,6 +49,13 @@
 .project-content {
 	margin-left: $mainSpacing;
 	margin-right: $mainSpacing * 2;
+	li {
+		display: flex;
+	}
+	.label {
+		margin-right: $mainSpacing;
+		color: $grey;
+	}
 	span {
 		font-size: 1.5em;
 	}

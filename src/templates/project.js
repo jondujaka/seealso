@@ -19,6 +19,7 @@ export const ProjectTemplate = ({ content, members }) => {
         client
     } = content.frontmatter;
 
+    console.log(members);
 
     members.push({
     	node: {
@@ -33,16 +34,27 @@ export const ProjectTemplate = ({ content, members }) => {
 
     // team.push("Zuzana Konstelanska");
 
-    const memberExists = member => {
-    	if(team) {
-    		return team.includes(member.node.frontmatter.fullName);
-    	}
-    }
 
-    const renderMember = () => {
+    const renderMember = (member, i) => {
+    	const name = member.node.frontmatter.fullName;
+    	if(!team && !team.includes(name)) return;
+    	const showAnd = members.length === 2;
+
+
     	return (
-    		<span>asdasd</span>
-	    );
+    		<>
+	    		<span>
+	    			{i !== 0 && showAnd && ' and '}
+		    		{i!== 0 && !showAnd && ', '}
+		    	</span>
+	    		<a href="#" key={'asd'}>
+			    	{name}
+		    	</a>
+		    </>
+    	);
+
+
+
     }
 
 
@@ -70,20 +82,20 @@ export const ProjectTemplate = ({ content, members }) => {
                     <div className="project-info mt-4">
                         <ul>
                             <li>
-                                <span className="label">Client</span>
+                                <span className="label">Client </span>
                                 <span>{client}</span>
                             </li>
                             <li>
-                                <span className="label">Team</span>
-                                {members && members.map(member => {
-                                	let counter = 0;
-                                	if(memberExists(member)){
-                                		renderMember(member, counter++);
-                                	}
-                                })}
+                                <span className="label">Team </span>
+                                <div>
+	                                {members && members.map((member, i) => (
+	                                		renderMember(member, i)
+	                                	)
+	                                )}
+	                                </div>
                             </li>
                             <li>
-                                <span className="label">Year</span>
+                                <span className="label">Year </span>
                                 <span>{year}</span>
                             </li>
                         </ul>
