@@ -26,6 +26,7 @@ collections:
     label: 'Team Members'
     folder: 'content/team-members'
     identifier_field: name
+    slug: '{{slug}}'
     create: true
     fields:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "team-member" }

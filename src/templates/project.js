@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import Layout from '../components/Layout';
-import RenderHtml from '../components/RenderHtml';
+import RenderHtml, {RenderHtmlNode} from '../components/RenderHtml';
 import Tags from '../components/Tags';
+import Magnifier from '../components/Magnifier';
 
 export const ProjectTemplate = ({ content, members }) => {
 
@@ -18,48 +19,71 @@ export const ProjectTemplate = ({ content, members }) => {
         client
     } = content.frontmatter;
 
-    const displayMember = (member, i) => {
-        return <Link to={member.node.fields.slug} key={i} />;
-    };
+
+    members.push({
+    	node: {
+    		frontmatter: {
+    			fullName: 'Jon Dujaka'
+    		},
+    		fields: {
+    			slug: '/jon-dujaka'
+    		}
+    	}
+    });
+
+    // team.push("Zuzana Konstelanska");
+
+    const memberExists = member => {
+    	if(team) {
+    		return team.includes(member.node.frontmatter.fullName);
+    	}
+    }
+
+    const renderMember = () => {
+    	return (
+    		<span>asdasd</span>
+	    );
+    }
+
 
     return (
         <>
             <h1 className="project-title">{title}</h1>
             <div className="single-project">
-                <div className="project-images pr-1">
+                <div className="project-images pr-2">
                     {images &&
                         images.map((img, i) => (
-                            <Img className={i !== 0 ? 'mt-2' : ''} key={i} fluid={img.childImageSharp.fluid} />
+                        	<Magnifier key={i} classes={i !== 0 ? 'mt-4' : ''} image={img.childImageSharp} />
                         ))}
                 </div>
                 <div className="project-content pl-1">
-                    {RenderHtml(content.htmlAst)}
+                    {RenderHtmlNode(content.htmlAst)}
 
-                    <div className="ml-1 mt-2">
+                    <div className="ml-2 mt-4">
                     	<Tags tags={tags} />
                     </div>
 
-                    <div className="ml-1">
-                    	{/*<RenderHtml content={description} />*/}
-                    </div>
+                    <div className="ml-2">
+                    	<RenderHtml content={description} />
+            		</div>
 
-                    <div className="project-info mt-2">
+                    <div className="project-info mt-4">
                         <ul>
                             <li>
-                                <span>Client</span>
+                                <span className="label">Client</span>
                                 <span>{client}</span>
                             </li>
                             <li>
-                                <span>Team</span>
-                                {members &&
-                                    members.map(
-                                        (member, i) =>
-                                            member.node.frontmatter.display &&
-                                            displayMember(member, i)
-                                    )}
+                                <span className="label">Team</span>
+                                {members && members.map(member => {
+                                	let counter = 0;
+                                	if(memberExists(member)){
+                                		renderMember(member, counter++);
+                                	}
+                                })}
                             </li>
                             <li>
-                                <span>Year</span>
+                                <span className="label">Year</span>
                                 <span>{year}</span>
                             </li>
                         </ul>
@@ -119,8 +143,11 @@ export const data = graphql`
                 tags
                 images {
                     childImageSharp {
-                        fluid(maxWidth: 1600) {
+                        fluid(maxWidth: 1200) {
                             ...GatsbyImageSharpFluid_tracedSVG
+                        }
+                        fixed(width: 2400) {
+                        	...GatsbyImageSharpFixed_noBase64
                         }
                     }
                 }

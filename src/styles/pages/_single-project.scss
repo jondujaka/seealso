@@ -2,7 +2,19 @@
 	display: flex;
 	max-height: 100vh;
 }
+.image-wrapper {
+	position: relative;
+	overflow: hidden;
 
+	.zoom-image {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
+		transform-origin: center;
+	}
+}
 .project-title {
 	font-size: 4rem;
 	font-weight: 400;
@@ -18,9 +30,14 @@
 
 .project-images,
 .project-content {
-	padding: $navHeight * 3 $mainSpacing $mainSpacing $mainSpacing;
 	flex-basis: 50%;
 	overflow-y: auto;
+}
+
+.project-images {
+	padding: $navHeight * 3 0 $mainSpacing 0;
+	margin-left: $mainSpacing;
+	margin-right: $mainSpacing;
 }
 
 .project-content {
