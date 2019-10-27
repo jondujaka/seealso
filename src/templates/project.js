@@ -37,7 +37,7 @@ export const ProjectTemplate = ({ content, members }) => {
 
     const renderMember = (member, i) => {
     	const name = member.node.frontmatter.fullName;
-    	if(!team && !team.includes(name)) return;
+    	if(team && !team.includes(name)) return;
     	const showAnd = members.length === 2;
 
 
@@ -88,7 +88,7 @@ export const ProjectTemplate = ({ content, members }) => {
                             <li>
                                 <span className="label">Team </span>
                                 <div>
-	                                {members && members.map((member, i) => (
+	                                {team && members && members.map((member, i) => (
 	                                		renderMember(member, i)
 	                                	)
 	                                )}
