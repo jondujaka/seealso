@@ -15,6 +15,7 @@
 		transform-origin: center;
 	}
 }
+
 .project-title {
 	font-size: 4rem;
 	font-weight: 400;
@@ -32,15 +33,18 @@
 .project-content {
 	flex-basis: 50%;
 	overflow-y: auto;
+	padding: $navHeight * 3 $mainSpacing $mainSpacing * 4 0;
 }
 
 .project-images {
-	padding: $navHeight * 3 0 $mainSpacing 0;
-	margin-left: $mainSpacing;
+	margin-left: $mainSpacing * 2;
 	margin-right: $mainSpacing;
 }
 
+
 .project-content {
+	margin-left: $mainSpacing;
+	margin-right: $mainSpacing * 2;
 	span {
 		font-size: 1.5em;
 	}

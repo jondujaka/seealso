@@ -60,7 +60,6 @@ const Magnifier = ({classes, image}) => {
 	return(
 		<ReactCursorPosition
 			hoverDelayInMs='200'
-			hoverDelayInMs='200'
 			onActivationChanged={initZoom}
     		onPositionChanged={setZoom}
     		className={classes}
