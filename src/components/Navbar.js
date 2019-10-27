@@ -13,7 +13,7 @@ const Navbar = ({ showFilter, pagination }) => {
 						to="/"
 					  	activeClassName="active"
 					>
-						Home!
+						Home
 					</Link>
 				</li>
 				<li className="mr-2">
