@@ -53,13 +53,13 @@ const Magnifier = ({classes, image}) => {
     	left: 0,
         transform: `translate(${position.x}px, ${position.y}px)`,
         opacity: showImage ? 1 : 0,
-        transition: 'opacity .2s ease-in-out',
+        transition: 'opacity .1s ease-in-out',
         cursor: 'crosshair'
     };
 
 	return(
 		<ReactCursorPosition
-			hoverDelayInMs={200}
+			hoverDelayInMs={100}
 			onActivationChanged={initZoom}
     		onPositionChanged={setZoom}
     		className={classes}

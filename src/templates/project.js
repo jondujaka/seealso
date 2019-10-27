@@ -43,10 +43,8 @@ export const ProjectTemplate = ({ content, members }) => {
 
     	return (
     		<>
-	    		<span>
-	    			{i !== 0 && showAnd && ' and '}
-		    		{i!== 0 && !showAnd && ', '}
-		    	</span>
+    			{i !== 0 && showAnd && '<span> and </span>'}
+	    		{i!== 0 && !showAnd && '<span>, </span>'}
 	    		<a href="#" key={'asd'}>
 			    	{name}
 		    	</a>
