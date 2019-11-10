@@ -8,7 +8,7 @@ import ScrollSnap from 'scroll-snap';
 
 
 const callback = () => {
-  console.log('called when snap animation ends')
+  console.log('Snapped')
 }
 
 const initSnapScroll = () => {
