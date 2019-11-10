@@ -14,7 +14,7 @@ const callback = () => {
 const initSnapScroll = () => {
 	const element = document.getElementById('scroll-container');
 	const snapConfig = {
-		scrollSnapDestination: '10% 0%'
+		scrollSnapDestination: '90% 0%'
 	}
 	const snapObject = new ScrollSnap(element, snapConfig)
 	snapObject.bind(callback)
