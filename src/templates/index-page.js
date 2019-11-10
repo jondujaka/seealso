@@ -127,4 +127,4 @@ const IndexPage = ({ data }) => {
 	);
 };
 
-export default IndexPage;
+export default exportFunc;
