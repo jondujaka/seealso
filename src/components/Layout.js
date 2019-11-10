@@ -20,9 +20,9 @@ const TemplateWrapper = ({
 	showNav
 }) => {
 	return (
-		<div>
+		<div className="h-100">
 			{showNav && (<Navbar showFilter={showFilter} pagination={pagination} />)}
-			<div>{children}</div>
+			<div className="h-100">{children}</div>
 			<SeeAlso />
 		</div>
 	);

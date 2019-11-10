@@ -1,4 +1,9 @@
+.images-wrapper {
+	scroll-snap-type: y mandatory;
+}
+
 .home-image {
+	scroll-snap-align: start;
 	position: relative;
 
 	> * {

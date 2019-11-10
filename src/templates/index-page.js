@@ -1,10 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import SVG from 'react-inlinesvg';
 import Layout from '../components/Layout';
+import ScrollSnap from 'scroll-snap';
+
+
+
+const callback = () => {
+  console.log('called when snap animation ends')
+}
+
+const initSnapScroll = () => {
+	const element = document.getElementById('scroll-container');
+	const snapConfig = {
+		scrollSnapDestination: '10% 0%'
+	}
+	const snapObject = new ScrollSnap(element, snapConfig)
+	snapObject.bind(callback)
+}
 
 export const IndexPageTemplate = ({ images }) => {
+
+	useEffect(() => {
+	    initSnapScroll();
+	}, []);
+
 	const renderImage = (img, i) => {
 		return (
 			<div key={i} className="home-image">
@@ -14,8 +35,9 @@ export const IndexPageTemplate = ({ images }) => {
 		);
 	};
 
+	console.log(images);
 	return (
-		<div className="images-wrapper">
+		<div className="h-100 images-wrapper" id="scroll-container">
 			{images && images.map((img, index) => renderImage(img, index))}
 		</div>
 	);
