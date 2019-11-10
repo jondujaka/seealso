@@ -17,29 +17,20 @@ const ProjectsList = ({ items }) => {
 				items.map((item, index) => {
 					const title = item.node.frontmatter.title;
 
-					return list ? (
+					return (
 						<Link
 							to={item.node.fields.slug}
 							key={`archive-${index}`}
 							className="list-link"
 						>
-							•{item.node.frontmatter.title}
-
 							<div className="project-thumbnail">
 								project thumbnail
 							</div>
+
+							{item.node.frontmatter.title}
+
 						</Link>
-					) : (
-						<div className="link-wrapper" key={`archive-${index}`}>
-							<Link to={item.node.fields.slug}>
-								•
-								{title}
-								<div className="project-thumbnail">
-									project thumbnail
-								</div>
-							</Link>
-						</div>
-					);
+					)
 				})}
 		</div>
 	);

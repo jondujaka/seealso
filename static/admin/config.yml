@@ -12,7 +12,7 @@ collections:
     create: true
     slug: '{{slug}}'
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "project"}
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "project"}
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list', field: { label: 'Tag', name: 'tag', widget: 'string'} }
@@ -26,6 +26,7 @@ collections:
     label: 'Team Members'
     folder: 'content/team-members'
     identifier_field: name
+    slug: '{{slug}}'
     create: true
     fields:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "team-member" }
@@ -38,10 +39,14 @@ collections:
         label: "Landing Page"
         name: "index"
         fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
-          - {label: "Title", name: "title", widget: "string", default: "home-page"}
-          - {label: 'Main Image', name: 'mainImage', widget: 'image'}
-          - {label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - { label: "Title", name: "title", widget: "string", default: "home-page"}
+          - label: 'Images'
+            name: 'images'
+            widget: 'list'
+            fields:
+              - { label: 'Main image', name: 'main-image', widget: 'image'}
+              - { label: 'SVG overlay', name: 'svg-overlay', widget: 'image'}
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"

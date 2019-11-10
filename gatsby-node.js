@@ -41,16 +41,17 @@ exports.createPages = async ({ actions, graphql }) => {
         const next = index === 0 ? null : projects[index - 1].node;
 
         const id = edge.node.id;
+        const slug = _.kebabCase(edge.node.frontmatter.title);
 
         createPage({
-            path: edge.node.fields.slug,
+            path: slug,
             tags: edge.node.frontmatter.tags,
             component: path.resolve(
                 `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
             ),
             // additional data can be passed via context
             context: {
-                slug: edge.node.fields.slug,
+                slug,
                 id,
                 next,
                 previous
@@ -116,32 +117,6 @@ exports.createPages = async ({ actions, graphql }) => {
             }
         });
     });
-
-    // Get all team-members and create pages
-
-    // // Tag pages:
-    // let tags = [];
-    // // Iterate through each post, putting all found tags into `tags`
-    // posts.forEach(edge => {
-    //  if (_.get(edge, `node.frontmatter.tags`)) {
-    //      tags = tags.concat(edge.node.frontmatter.tags);
-    //  }
-    // });
-    // // Eliminate duplicate tags
-    // tags = _.uniq(tags);
-
-    // // Make tag pages
-    // tags.forEach(tag => {
-    //  const tagPath = `/tags/${_.kebabCase(tag)}/`;
-
-    //  createPage({
-    //      path: tagPath,
-    //      component: path.resolve(`src/templates/tags.js`),
-    //      context: {
-    //          tag
-    //      }
-    //  });
-    // });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -149,7 +124,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     fmImagesToRelative(node); // convert image paths for gatsby images
 
     if (node.internal.type === `MarkdownRemark`) {
-        const value = createFilePath({ node, getNode });
+
+    	const value = node.frontmatter.templateKey === 'team-member'
+    				? _.kebabCase(node.frontmatter.fullName)
+    				: _.kebabCase(node.frontmatter.title);
+
         createNodeField({
             name: `slug`,
             node,

@@ -1,42 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import styled from 'styled-components';
 import Img from 'gatsby-image';
 import SVG from 'react-inlinesvg';
 import Layout from '../components/Layout';
+import IndexPageTeaser from '../components/IndexPageTeaser';
+import ImageMap from '../components/ImageMap';
+import ScrollSnap from 'scroll-snap';
 
-	const IndexPage = ({ data }) => {
-		const [position, setPosition] = useState({
-		opacity: 0
-	});
+
+
+
+
+const callback = () => {
+  console.log('Snap!')
+}
+
+const initSnapScroll = () => {
+	const element = document.getElementById('scroll-container');
+	const snapConfig = {
+		scrollSnapDestination: '90% 0%'
+	}
+	const snapObject = new ScrollSnap(element, snapConfig)
+	snapObject.bind(callback)
+}
+
+export const IndexPageTemplate = ({ images }) => {
 
 	useEffect(() => {
-		setPosition({
-			horizontal: Math.floor(Math.random() * (70 - 10) + 10),
-			vertical: Math.floor(Math.random() * (40 - 10) + 10),
-			size: Math.random() * (7 - 1) + 1,
-			opacity: 1
-		});
+	    initSnapScroll();
 	}, []);
 
-	const Ghost = styled.h1`
-		text-align: right;
-		display: block;
-		margin-right: ${position.horizontal}vw;
-		margin-top: ${position.vertical}vh;
-		transition: 0.2s opacity 0.4s ease-in-out;
-		font-size: ${position.size}rem;
-		opacity: ${position.opacity};
-	`;
+
+	if(process.env.CONTEXT === 'production'){
+		return <IndexPageTeaser/>
+	} else {
+		return(
+			<div className="h-100 images-wrapper" id="scroll-container">
+				{images && images.map((img, index) => <ImageMap key={index} images={img} />)}
+			</div>
+		)
+	}
+};
+
+const IndexPage = ({ data }) => {
+	const imagesData = useStaticQuery(graphql`
+		query {
+			site {
+				siteMetadata {
+					title
+				}
+			}
+
+			# Get the home-page
+			markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+				frontmatter {
+					title
+					templateKey
+					date
+					image {
+						mainImage {
+							childImageSharp {
+								fluid(maxWidth: 2540) {
+									...GatsbyImageSharpFluid_tracedSVG
+								}
+							}
+						}
+						svg {
+							publicURL
+						}
+					}
+				}
+			}
+		}
+	`);
+
+	const imagesArray = imagesData.markdownRemark.frontmatter.image;
 
 	return (
-		<Layout showNav={false} title={`👻 - See Also`}>
-			<Ghost>
-				<span role="img">👻</span>
-			</Ghost>
+		<Layout showNav={true}>
+			<IndexPageTemplate images={imagesArray} />
 		</Layout>
 	);
-
 };
 
 export default IndexPage;

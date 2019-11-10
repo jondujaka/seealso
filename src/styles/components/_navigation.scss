@@ -41,7 +41,8 @@
 			}
 
 			&:not(.filter) {
-				a:hover {
+				a:hover,
+				a.active {
 					padding-top: 2.25rem;
 				}
 			}
