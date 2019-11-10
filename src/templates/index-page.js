@@ -30,8 +30,8 @@ const initSnapScroll = () => {
 }
 
 const IndexPageTeaser = ({data}) => {
-	const IndexPage = ({ data }) => {
-		const [position, setPosition] = useState({
+
+	const [position, setPosition] = useState({
 		opacity: 0
 	});
 
