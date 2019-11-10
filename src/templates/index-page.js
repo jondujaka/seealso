@@ -8,7 +8,7 @@ import ScrollSnap from 'scroll-snap';
 
 
 const callback = () => {
-  console.log('Snapped')
+  console.log('Snap!')
 }
 
 const initSnapScroll = () => {
