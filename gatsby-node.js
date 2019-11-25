@@ -65,10 +65,15 @@ exports.createPages = async ({ actions, graphql }) => {
         component: path.resolve(`src/templates/archive.js`)
     });
 
+    const ENV = process.env.CONTEXT;
+
     // Create HOME page
     createPage({
         path: '/',
-        component: path.resolve(`src/templates/index-page.js`)
+        component: path.resolve(`src/templates/index-page.js`),
+        context: {
+        	ENV
+        }
     });
 
     const teamMembersData = await graphql(`

@@ -20,14 +20,17 @@ const initSnapScroll = () => {
 	snapObject.bind(callback)
 }
 
-export const IndexPageTemplate = ({ images }) => {
+export const IndexPageTemplate = ({ images, context }) => {
 
 	useEffect(() => {
 	    initSnapScroll();
 	}, []);
 
+	console.log('env: ');console.log(context);
+	console.log('-------')
 
-	if(process.env.CONTEXT === 'production'){
+
+	if(context.ENV === 'production'){
 		return <IndexPageTeaser/>
 	} else {
 		return(
@@ -38,7 +41,7 @@ export const IndexPageTemplate = ({ images }) => {
 	}
 };
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, pageContext }) => {
 	const imagesData = useStaticQuery(graphql`
 		query {
 			site {
@@ -62,7 +65,7 @@ const IndexPage = ({ data }) => {
 
 	return (
 		<Layout showNav={true}>
-			<IndexPageTemplate images={imagesArray} />
+			<IndexPageTemplate images={imagesArray} context={pageContext} />
 		</Layout>
 	);
 };
