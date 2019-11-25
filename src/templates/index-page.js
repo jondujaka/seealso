@@ -7,10 +7,6 @@ import IndexPageTeaser from '../components/IndexPageTeaser';
 import ImageMap from '../components/ImageMap';
 import ScrollSnap from 'scroll-snap';
 
-
-
-
-
 const callback = () => {
   console.log('Snap!')
 }
@@ -57,18 +53,6 @@ const IndexPage = ({ data }) => {
 					title
 					templateKey
 					date
-					image {
-						mainImage {
-							childImageSharp {
-								fluid(maxWidth: 2540) {
-									...GatsbyImageSharpFluid_tracedSVG
-								}
-							}
-						}
-						svg {
-							publicURL
-						}
-					}
 				}
 			}
 		}

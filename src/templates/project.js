@@ -61,10 +61,6 @@ export const ProjectTemplate = ({ content, members }) => {
             <h1 className="project-title">{title}</h1>
             <div className="single-project">
                 <div className="project-images pr-2">
-                    {images &&
-                        images.map((img, i) => (
-                        	<Magnifier key={i} classes={i !== 0 ? 'mt-4' : ''} image={img.childImageSharp} />
-                        ))}
                 </div>
                 <div className="project-content pl-1">
                     {RenderHtmlNode(content.htmlAst)}
@@ -151,16 +147,6 @@ export const data = graphql`
                 client
                 year
                 tags
-                images {
-                    childImageSharp {
-                        fluid(maxWidth: 1200) {
-                            ...GatsbyImageSharpFluid_tracedSVG
-                        }
-                        fixed(width: 2400) {
-                        	...GatsbyImageSharpFixed_noBase64
-                        }
-                    }
-                }
             }
         }
         teamMembersInfo: allMarkdownRemark(
