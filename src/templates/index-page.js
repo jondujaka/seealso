@@ -63,11 +63,15 @@ const IndexPage = ({ data, pageContext }) => {
 
 	const imagesArray = imagesData.markdownRemark.frontmatter.image;
 
-	return (
-		<Layout showNav={true}>
-			<IndexPageTemplate images={imagesArray} context={pageContext} />
-		</Layout>
-	);
+	if(pageContext.ENV === 'production'){
+		return <IndexPageTemplate images={imagesArray} context={pageContext} />
+	} else {
+		return(
+			<Layout showNav={true}>
+				<IndexPageTemplate images={imagesArray} context={pageContext} />
+			</Layout>
+		)
+	}
 };
 
 export default IndexPage;
