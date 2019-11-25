@@ -26,6 +26,9 @@ export const IndexPageTemplate = ({ images }) => {
 	    initSnapScroll();
 	}, []);
 
+	console.log('env: ');console.log(process.env);
+	console.log('-------')
+
 
 	if(process.env.CONTEXT === 'production'){
 		return <IndexPageTeaser/>
