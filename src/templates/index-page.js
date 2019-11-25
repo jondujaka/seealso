@@ -41,7 +41,7 @@ export const IndexPageTemplate = ({ images, context }) => {
 	}
 };
 
-const IndexPage = ({ data, context }) => {
+const IndexPage = ({ data, pageContext }) => {
 	const imagesData = useStaticQuery(graphql`
 		query {
 			site {
@@ -65,7 +65,7 @@ const IndexPage = ({ data, context }) => {
 
 	return (
 		<Layout showNav={true}>
-			<IndexPageTemplate images={imagesArray} context={context} />
+			<IndexPageTemplate images={imagesArray} context={pageContext} />
 		</Layout>
 	);
 };
