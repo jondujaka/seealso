@@ -22,24 +22,24 @@ const initSnapScroll = () => {
 
 export const IndexPageTemplate = ({ images, context }) => {
 
-	useEffect(() => {
-	    initSnapScroll();
-	}, []);
+
 
 	console.log('env: ');console.log(context);
 	console.log('-------')
 
-
-	if(context.ENV === 'production'){
-		return <IndexPageTeaser/>
-	} else {
-		return(
-			<div className="h-100 images-wrapper" id="scroll-container">
-				{images && images.map((img, index) => <ImageMap key={index} images={img} />)}
-			</div>
-		)
-	}
+	return context.ENV === 'production' ? <IndexPageTeaser/> : <Home images={images} />
 };
+
+const Home = (images) => {
+	useEffect(() => {
+	    initSnapScroll();
+	}, []);
+	return (
+		<div className="h-100 images-wrapper" id="scroll-container">
+			{images && images.map((img, index) => <ImageMap key={index} images={img} />)}
+		</div>
+	)
+}
 
 const IndexPage = ({ data, pageContext }) => {
 	const imagesData = useStaticQuery(graphql`
