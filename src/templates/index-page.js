@@ -50,7 +50,6 @@ const IndexPage = ({ data, pageContext }) => {
 					title
 					templateKey
 					date
-					home-images
 				}
 			}
 		}
