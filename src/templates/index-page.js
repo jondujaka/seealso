@@ -54,16 +54,12 @@ const IndexPage = ({ data, pageContext }) => {
 					title
 					templateKey
 					date
-					homeimages {
-						main_image
-						svg_overlay
-					}
 				}
 			}
 		}
 	`);
 
-	const imagesArray = imagesData.markdownRemark.frontmatter.homeimages;
+	const imagesArray = [];
 
 	if (pageContext.ENV === 'production') {
 		return <IndexPageTemplate images={imagesArray} context={pageContext} />;
