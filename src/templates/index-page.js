@@ -21,12 +21,6 @@ const initSnapScroll = () => {
 }
 
 export const IndexPageTemplate = ({ images, context }) => {
-
-
-
-	console.log('env: ');console.log(context);
-	console.log('-------')
-
 	return context.ENV === 'production' ? <IndexPageTeaser/> : <Home images={images} />
 };
 
@@ -56,6 +50,7 @@ const IndexPage = ({ data, pageContext }) => {
 					title
 					templateKey
 					date
+					home-images
 				}
 			}
 		}
