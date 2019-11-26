@@ -42,7 +42,7 @@ collections:
           - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - { label: "Title", name: "title", widget: "string", default: "home-page"}
           - label: 'Images'
-            name: 'images'
+            name: 'home-images'
             widget: 'list'
             fields:
               - { label: 'Main image', name: 'main-image', widget: 'image'}
