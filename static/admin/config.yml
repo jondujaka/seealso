@@ -41,12 +41,8 @@ collections:
         fields:
           - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - { label: "Title", name: "title", widget: "string", default: "home-page"}
-          - label: 'Home Images'
-            name: 'homeimages'
-            widget: 'list'
-            fields:
-              - { label: 'Main image', name: 'main-image', widget: 'image'}
-              - { label: 'SVG overlay', name: 'svg-overlay', widget: 'image'}
+          - { label: 'Main Image', name: 'mainImage', widget: 'image'}
+          - { label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"

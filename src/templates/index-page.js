@@ -8,32 +8,36 @@ import ImageMap from '../components/ImageMap';
 import ScrollSnap from 'scroll-snap';
 
 const callback = () => {
-  console.log('Snap!')
-}
+	console.log('Snap!');
+};
 
 const initSnapScroll = () => {
 	const element = document.getElementById('scroll-container');
 	const snapConfig = {
 		scrollSnapDestination: '90% 0%'
-	}
-	const snapObject = new ScrollSnap(element, snapConfig)
-	snapObject.bind(callback)
-}
-
-export const IndexPageTemplate = ({ images, context }) => {
-	return context.ENV === 'production' ? <IndexPageTeaser/> : <Home images={images} />
+	};
+	const snapObject = new ScrollSnap(element, snapConfig);
+	snapObject.bind(callback);
 };
 
-const Home = (images) => {
+export const IndexPageTemplate = ({ images, context }) => {
+	return context.ENV === 'production' ? (
+		<IndexPageTeaser />
+	) : (
+		<Home images={images} />
+	);
+};
+
+const Home = images => {
 	useEffect(() => {
-	    initSnapScroll();
+		initSnapScroll();
 	}, []);
 	return (
 		<div className="h-100 images-wrapper" id="scroll-container">
-			{images && images.map((img, index) => <ImageMap key={index} images={img} />)}
+			<h2>test</h2>
 		</div>
-	)
-}
+	);
+};
 
 const IndexPage = ({ data, pageContext }) => {
 	const imagesData = useStaticQuery(graphql`
@@ -55,16 +59,16 @@ const IndexPage = ({ data, pageContext }) => {
 		}
 	`);
 
-	const imagesArray = imagesData.markdownRemark.frontmatter.image;
+	const imagesArray = [];
 
-	if(pageContext.ENV === 'production'){
-		return <IndexPageTemplate images={imagesArray} context={pageContext} />
+	if (pageContext.ENV === 'production') {
+		return <IndexPageTemplate images={imagesArray} context={pageContext} />;
 	} else {
-		return(
+		return (
 			<Layout showNav={true}>
 				<IndexPageTemplate images={imagesArray} context={pageContext} />
 			</Layout>
-		)
+		);
 	}
 };
 
