@@ -38,7 +38,7 @@ const IndexPage = ({ data, pageContext }) => {
 					homeImages {
 						mainImage {
 							childImageSharp {
-								fluid(maxWidth: 2540) {
+								fluid(maxWidth: 2540, quality: 100) {
 									...GatsbyImageSharpFluid_tracedSVG
 								}
 							}
