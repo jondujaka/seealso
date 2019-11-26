@@ -41,8 +41,8 @@ collections:
         fields:
           - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - { label: "Title", name: "title", widget: "string", default: "home-page"}
-          - label: 'Images'
-            name: 'home-images'
+          - label: 'Home Images'
+            name: 'homeimages'
             widget: 'list'
             fields:
               - { label: 'Main image', name: 'main-image', widget: 'image'}
