@@ -9,4 +9,4 @@ const Home = ({images}) => {
 	);
 };
 
-export default Hom
+export default Home;
