@@ -8,15 +8,9 @@ const ImageMap = ({images}) => {
 	const overlayRef = useRef();
 	const id = `overlay-${Math.random()}`;
 
-	// useEffect(() => {
-	//     setLinks();
-	// }, []);
-
 	const setLinks = () => {
-		console.log(overlayRef);
 		const overlay = document.getElementById(id);
 		const groups = overlay.getElementsByTagName('g');
-		console.log(groups);
 
 		[...groups].map(item => {
 			item.addEventListener(

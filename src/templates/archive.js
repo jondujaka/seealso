@@ -17,6 +17,13 @@ export default props => {
 							templateKey
 							team
 							tags
+							images {
+								childImageSharp {
+			                        fixed(width: 200) {
+			                        	...GatsbyImageSharpFixed_noBase64
+			                        }
+			                    }
+							}
 						}
 						fields {
 							slug

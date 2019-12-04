@@ -17,12 +17,20 @@ const Navbar = ({ showFilter, pagination }) => {
 					</Link>
 				</li>
 				<li className="mr-2">
-					<Link to="/archive" activeClassName="active">
+					<Link
+						to="/archive"
+						activeClassName="active"
+						partiallyActive={true}
+					>
 						Archive
 					</Link>
 				</li>
 				<li className="mr-2">
-					<Link to="/info" activeClassName="active">
+					<Link
+						to="/info"
+						activeClassName="active"
+						partiallyActive={true}
+					>
 						Info
 					</Link>
 				</li>

@@ -14,27 +14,39 @@
 		line-height: 1.5 !important;
 	}
 	.link-wrapper {
-		display: inline;
-
+		display: block;
+		position: relative;
 		span {
 			display: inline-block;
+		}
+	}
+
+	.tags {
+		position: absolute;
+		left: 14.5rem;
+		top: 5.1rem;
+
+		a {
+			font-size: .8rem;
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 
 	.project-thumbnail {
 		font-size: 0.2em;
 		display: inline-flex;
-		background: grey;
+		overflow: hidden;
 		vertical-align: middle;
 		height: 90px;
 		align-items: center;
 		justify-content: center;
 		width: 180px;
-		color: white;
 		margin: 0 1.5rem;
 	}
 
-	a {
+	.list-link {
 		position: relative;
 		line-height: 2;
 		font-size: 4rem;

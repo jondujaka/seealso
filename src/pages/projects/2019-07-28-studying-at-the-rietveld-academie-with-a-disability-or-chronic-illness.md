@@ -5,7 +5,7 @@ tags:
   - Brochure
   - Editorial
   - Typography
-description: 'Offset printing, saddle-stitching,</br> 170×240 mm, 40 pp.'
+technicalDetails: 'Offset printing, saddle-stitching,</br> 170×240 mm, 40 pp.'
 client: Gerrit Rieveld Academie
 team:
   - Kimberley Cosmilla

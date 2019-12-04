@@ -1,7 +1,7 @@
 ---
 templateKey: project
 title: Hello Can i Push this
-description: Try TRY bu J
+technicalDetails: Try TRY bu J
 client: Rietveld
 year: 1991
 images:
