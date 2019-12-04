@@ -1,6 +1,7 @@
 .images-wrapper {
 	scroll-snap-type: both proximity;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch; //iOS fix
 }
 
 .home-image {
