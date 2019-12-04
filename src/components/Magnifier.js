@@ -33,8 +33,6 @@ const Magnifier = ({classes, image}) => {
 	    	movement = {};
 	    	movement.x = mouse.x / container.w;
 	    	movement.y = mouse.y / container.h;
-	    	// movement.x = mouse.x / container.w;
-	    	// movement.y = mouse.y / container.h;
 	    ;
 
     	const x = ((image.w/2) - container.w/2) - ((image.w - container.w) * movement.x);

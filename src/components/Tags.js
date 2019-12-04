@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from "gatsby";
+const _ = require('lodash');
 
 const Tags = ({tags}) => {
 	return(
-		<div>
+		<div class="tags">
 			{
 				tags && tags.map((tag, i) => (
-					<span key={`tag-${i}`}>
+					<Link to={_.kebabCase(tag)} key={i} >
 						{i!==0 && ', '}
 						{tag}
-					</span>
+					</Link>
 				))
 			}
 		</div>
