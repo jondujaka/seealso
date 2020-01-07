@@ -20,33 +20,6 @@
 		&.secondary-nav {
 			justify-content: flex-end;
 		}
-
-		// Common styles
-		li {
-			border: 1px solid black;
-			border-top: none;
-			min-width: 7.8125rem;
-			height: min-content;
-
-			a {
-				display: block;
-				text-decoration: none;
-				padding: 0.25rem;
-				transition: padding 0.2s ease-in-out;
-
-				&.active {
-					background: black;
-					color: white;
-				}
-			}
-
-			&:not(.filter) {
-				a:hover,
-				a.active {
-					padding-top: 2.25rem;
-				}
-			}
-		}
 	}
 
 	.filter {
@@ -62,6 +35,52 @@
 
 		a:hover span {
 			width: 0;
+		}
+	}
+}
+
+.nav-item {
+	border: 1px solid black;
+	background: #FFF;
+	min-width: 7.8125rem;
+	height: min-content;
+
+	&:not(.reverse){
+		border-top: none;
+	}
+
+	&.reverse {
+		border-bottom: none;
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+		padding: 0.25rem;
+		transition: padding 0.2s ease-in-out;
+
+		&.active {
+			background: black;
+			color: white;
+		}
+	}
+
+	&.double {
+		a {
+			padding: 0.25rem 4.5rem
+		}
+	}
+
+	&:not(.reverse) {
+		a:hover,
+		a.active {
+			padding-top: 2.25rem;
+		}
+	}
+	&.reverse {
+		a:hover,
+		a.active {
+			padding-bottom: 2.25rem;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { navigate } from "gatsby"
 import Img from 'gatsby-image';
 import SVG from 'react-inlinesvg';

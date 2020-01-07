@@ -5,6 +5,7 @@ import Img from 'gatsby-image';
 import Layout from '../components/Layout';
 import RenderHtml, {RenderHtmlNode} from '../components/RenderHtml';
 import Tags from '../components/Tags';
+import Members from '../components/Members';
 import Magnifier from '../components/Magnifier';
 
 export const ProjectTemplate = ({ content, members }) => {
@@ -18,39 +19,6 @@ export const ProjectTemplate = ({ content, members }) => {
         year,
         client
     } = content.frontmatter;
-
-    console.log(members);
-
-    members.push({
-    	node: {
-    		frontmatter: {
-    			fullName: 'Jon Dujaka'
-    		},
-    		fields: {
-    			slug: '/jon-dujaka'
-    		}
-    	}
-    });
-
-    // team.push("Zuzana Konstelanska");
-
-
-    const renderMember = (member, i) => {
-    	const name = member.node.frontmatter.fullName;
-    	if(team && !team.includes(name)) return;
-    	const showAnd = members.length === 2;
-
-    	return (
-    		<>
-    			{i !== 0 && showAnd && '<span> and </span>'}
-	    		{i!== 0 && !showAnd && '<span>, </span>'}
-	    		<a href="#" key={'asd'}>
-			    	{name}
-		    	</a>
-		    </>
-    	);
-    }
-
 
     return (
         <>
@@ -76,18 +44,18 @@ export const ProjectTemplate = ({ content, members }) => {
 
                     <div className="project-info mt-4">
                         <ul>
-                            <li>
-                                <span className="label">Client </span>
-                                <span>{client}</span>
-                            </li>
+							{
+								client && 
+									<li>
+										<span className="label">Client </span>
+										<span>{client}</span>
+									</li>
+							}
                             <li>
                                 <span className="label">Team </span>
                                 <div>
-	                                {team && members && members.map((member, i) => (
-	                                		renderMember(member, i)
-	                                	)
-	                                )}
-	                                </div>
+									{ team && members && <Members allMembers={members} activeMembers={team} />}
+								</div>
                             </li>
                             <li>
                                 <span className="label">Year </span>

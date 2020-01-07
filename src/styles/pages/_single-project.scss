@@ -1,11 +1,20 @@
 .single-project {
 	display: flex;
-	max-height: 100vh;
-
+	flex-direction: column;
 	a {
 		text-decoration: underline;
 	}
 }
+
+@media screen and (min-width: 1080px){
+	.single-project {
+		flex-direction: row;
+		max-height: 100vh;
+	}
+}
+
+
+
 .image-wrapper {
 	position: relative;
 	overflow: hidden;
@@ -45,7 +54,6 @@
 	margin-right: $mainSpacing;
 }
 
-
 .project-content {
 	margin-left: $mainSpacing;
 	margin-right: $mainSpacing * 2;
@@ -57,7 +65,7 @@
 		color: $grey;
 	}
 	span {
-		font-size: 1.5em;
+		font-size: 1.5rem;
 	}
 	p:first-of-type {
 		margin-top: 0;
