@@ -34,17 +34,18 @@ collections:
       - { label: 'Link', name: 'link', widget: 'string' }
   - name: "pages"
     label: "Pages"
-    - file: "src/pages/index.md"
-      label: "Landing Page"
-      name: "index"
-      fields:
-        - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
-        - { label: "Title", name: "title", widget: "string", default: "home-page"}
-        - label: 'Home Images'
-          name: 'homeImages'
-          widget: 'list'
-          fields:
-            - { label: 'Main Image', name: 'mainImage', widget: 'image', media_library: {config: {multiple: false}}}
+    files:
+      - file: "src/pages/index.md"
+        label: "Landing Page"
+        name: "index"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - { label: "Title", name: "title", widget: "string", default: "home-page"}
+          - label: 'Home Images'
+            name: 'homeImages'
+            widget: 'list'
+            fields:
+              - { label: 'Main Image', name: 'mainImage', widget: 'image', media_library: {config: {multiple: false}}}
             - { label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
   - name: "info"
     label: "Info"
