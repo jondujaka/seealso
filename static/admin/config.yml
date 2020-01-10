@@ -47,10 +47,14 @@ collections:
             fields:
               - { label: 'Main Image', name: 'mainImage', widget: 'image', media_library: {config: {multiple: false}}}
               - { label: 'SVG File', name: 'svg', widget: 'image', media_library: {config: {multiple: false}}}
-      - file: "src/pages/about/index.md"
-        label: "About"
-        name: "about"
-        fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
+      - file: "src/pages/info/index.md"
+        label: "Info"
+        name: "info"
+        fields: 
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "info-page"}
           - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "About", name: "about", widget: "markdown"}
+          - {label: "Address", name: "address", widget: "markdown"}
+          - {label: "Contact", name: "contact", widget: "markdown"}
+          - {label: "Social", name: "social", widget: "markdown"}
+          - {label: "Other", name: "other", widget: "markdown"}
